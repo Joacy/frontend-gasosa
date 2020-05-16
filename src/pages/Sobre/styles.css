@@ -1,0 +1,38 @@
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.top img {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.top span {
+    font-size: 32px;
+    font-weight: bold;
+    color: #b7c0ee;
+}
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sobre p {
+    text-align: left;
+    color: #b7c0ee;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.sobre p + p {
+    margin-top: 5px;
+}

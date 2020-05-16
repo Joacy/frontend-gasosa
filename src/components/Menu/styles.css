@@ -1,0 +1,67 @@
+div.menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    z-index: 900;
+}
+
+div.menu.show {
+    display: block;
+    animation: show 0.3s forwards;
+}
+
+@keyframes show {
+    100% {
+        left: 0;
+    }
+}
+
+ul.opcoes {
+    z-index: 999;
+    list-style: none;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #7067cf;
+    color: #f9f9f9;
+    height: 100%;
+}
+
+ul.opcoes li {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+ul.opcoes li:hover {
+    background: #f9f9f9;
+    color: #7067cf;
+    transition: 0.3s;
+}
+
+ul.opcoes .topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+ul.opcoes .topo span {
+    font-size: 16px;
+    color: #f9f9f9;
+}
+
+ul.opcoes .topo button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #f9f9f9;
+}

@@ -1,0 +1,119 @@
+.box-posto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 36px 15px;
+    padding-top: 50px;
+    height: 100vh;
+}
+
+.box-posto .card {
+    display: flex;
+    flex-direction: column;
+    /* flex: 1; */
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    margin-top: 15px;
+    background: transparent;
+}
+
+.box-posto .card .card-header {
+    background: #7b287d;
+    padding: 15px 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-posto .card .card-header img {
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.box-posto .card .card-header h3 {
+    color: #f9f9f9;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.box-posto .card .card-body {
+    background: #f9f9f9;
+    padding: 15px 10px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: 0;
+}
+
+.box-posto .card .card-body h4 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #7b287d;
+}
+
+.box-posto .card .card-body ul.combustiveis {
+    list-style: none;
+    margin: 0;
+    margin: 15px 0;
+}
+
+.box-posto .card .card-body ul.combustiveis li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-posto .card .card-body ul.combustiveis li + li {
+    padding-top: 5px;
+}
+
+.box-posto .card .card-body ul.combustiveis li span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #7b287d;
+}
+
+.box-posto .card .card-body ul.combustiveis li span + span {
+    margin-left: 10px;
+}
+
+.box-posto .card .card-body h5 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #7b287d;
+}
+
+.box-posto .card .card-body .acoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.box-posto .card .card-body button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+    color: #f9f9f9;
+    background: #7067cf;
+}
+
+.box-posto .card .card-body button:hover {
+    background: #7067cfee;
+    transition: 0.3s;
+}
+
+.box-posto .card .card-body button span {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}

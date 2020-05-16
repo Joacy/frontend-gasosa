@@ -1,0 +1,36 @@
+header {
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    width: 100%;
+    padding: 10px 15px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9;
+    color: #330c2f;
+    box-shadow: 5px 5px 15px 0px #330c2f;
+}
+
+header button.abre-menu {
+    position: absolute;
+    left: 15px;
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid #7b287d;
+    color: #7b287d;
+    outline: 0;
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+header button.abre-menu:hover {
+    background: #7b287d;
+    color: #f9f9f9;
+    transition: 0.3s;
+}
