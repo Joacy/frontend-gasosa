@@ -5,8 +5,6 @@ import {
     Card,
     Tab,
     Nav,
-    NavItem,
-    NavLink
 } from 'react-bootstrap';
 
 import {
@@ -142,7 +140,7 @@ export default function Home () {
                             ))}
                     </Tab.Pane>
 
-                    {/* <Tab.Pane eventKey="gas">
+                    <Tab.Pane eventKey="gas">
                         {postos.map(posto =>
                             (posto.combustiveis.find(combustivel => (
                                 (combustivel.tipo.indexOf("GNV") !== -1)
@@ -170,7 +168,7 @@ export default function Home () {
                                     </Card.Body>
                                 </Card>
                             ))}
-                    </Tab.Pane> */}
+                    </Tab.Pane>
 
                     <Tab.Pane eventKey="menu">
                         <ul className="menu-opcoes">
@@ -202,11 +200,11 @@ export default function Home () {
                         </Nav.Link>
                     </Nav.Item>
                     
-                    {/* <Nav.Item>
+                    <Nav.Item>
                         <Nav.Link eventKey='gas'>
                             <span>Gás (Gnv)</span>
                         </Nav.Link>
-                    </Nav.Item> */}
+                    </Nav.Item>
                     
                     <Nav.Item>
                         <Nav.Link eventKey="menu">
