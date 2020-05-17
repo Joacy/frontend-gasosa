@@ -202,7 +202,7 @@ export default function Home () {
                     
                     <Nav.Item>
                         <Nav.Link eventKey='gas'>
-                            <span>Gás (Gnv)</span>
+                            <span>Gnv</span>
                         </Nav.Link>
                     </Nav.Item>
                     
