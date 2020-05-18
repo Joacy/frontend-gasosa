@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Header from '../../components/Header';
-
 import './styles.css';
 
 import api from '../../services/api';
@@ -22,8 +20,7 @@ export default function Sugestoes () {
     }
 
     return (
-        <div className="box">
-            <Header />
+        <>
             <h4 className="titulo">
                 Seu feedback é fundamental para a melhoria do "Gasosa!"
             </h4>
@@ -32,13 +29,13 @@ export default function Sugestoes () {
                 <textarea
                     value={sugestoes}
                     onChange={e => setSugestoes(e.target.value)}
-                    rows="15"
+                    rows="8"
                     required
                 >
                 </textarea>
 
                 <button type="submit">Enviar</button>
             </form>
-        </div>
+        </>
     )
 };

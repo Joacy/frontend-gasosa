@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Header from '../../components/Header';
-
 import './styles.css';
 
 export default function QuantoIreiGastar () {
@@ -18,8 +16,7 @@ export default function QuantoIreiGastar () {
     }
 
     return (
-        <div className="box">
-            <Header />
+        <>
             <form onSubmit={handleCalculate}>
                 <input
                     type="text"
@@ -54,6 +51,6 @@ export default function QuantoIreiGastar () {
                     Você irá gastar R$ {valor}
                 </p>
             </div>
-        </div>
+        </>
     );
 }

@@ -111,10 +111,10 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 90;
+    z-index: 2000;
     bottom: 0;
     background: #f9f9f9;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     box-shadow: 5px 5px 15px 0px #330c2f;
 }
@@ -156,6 +156,7 @@
     margin: 25px 0;
     padding: 0 15px;
     height: calc(100vh - 150px);
+    position: relative;
 }
 
 .box-home ul.menu-opcoes li {
@@ -179,4 +180,65 @@
 
 .box-home ul.menu-opcoes li + li {
     margin-top: 10px;
+}
+
+.modal {
+    background: linear-gradient(90deg, #330c2f, #7067cf);
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0px;
+}
+
+.modal-backdrop {
+    background: none;
+}
+
+.modal .modal-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: 0;
+    height: calc(100vh - 100px);
+    width: 100%;
+    margin: 50px auto;
+    padding: 15px;
+}
+
+.modal .modal-content .modal-body {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.modal .modal-content .modal-header {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    left: 0;
+    margin-bottom: 15px;
+}
+
+.modal .modal-content .modal-header button.close {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    color: #f9f9f9;
+    outline: 0;
+}
+
+.modal .modal-content .modal-footer {
+    display: none;
 }

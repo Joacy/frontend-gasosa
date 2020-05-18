@@ -3,21 +3,13 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.top img {
-    width: 90px;
-    height: auto;
-    object-fit: contain;
-    margin-right: 15px;
 }
 
 .top span {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: bold;
     color: #b7c0ee;
+    margin-bottom: 5px;
 }
 
 .sobre {
@@ -29,7 +21,7 @@
 .sobre p {
     text-align: left;
     color: #b7c0ee;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.4;
 }
 

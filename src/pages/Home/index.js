@@ -5,6 +5,7 @@ import {
     Card,
     Tab,
     Nav,
+    Modal,
 } from 'react-bootstrap';
 
 import {
@@ -16,14 +17,116 @@ import menorPreco from '../../assets/img/menor-preco.png';
 import petrobras from '../../assets/img/petrobras.png';
 
 import Header from '../../components/Header';
+import AlcoolGasolina from '../../pages/AlcoolGasolina';
+import MediaPorKm from '../../pages/MediaPorKm';
+import QuantoIreiGastar from '../../pages/QuantoIreiGastar';
+import Sobre from '../../pages/Sobre';
+import Sugestoes from '../../pages/Sugestoes';
+
 
 import './styles.css';
 
 import api from '../../services/api';
 
+function ModalAlcoolGasolina (props) {
+    return (
+        <Modal {...props}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <AlcoolGasolina />
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
+function ModalMediaPorKm (props) {
+    return (
+        <Modal {...props}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <MediaPorKm />
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
+function ModalQuantoIreiGastar (props) {
+    return (
+        <Modal {...props}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <QuantoIreiGastar />
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
+function ModalSobre (props) {
+    return (
+        <Modal {...props}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Sobre />
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
+function ModalSugestoes (props) {
+    return (
+        <Modal {...props}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Sugestoes />
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
 export default function Home () {
     const [postos, setPostos] = useState([]);
     const [distancia, setDistancia] = useState('');
+
+    const [modalAlcoolGasolinaShow, setModalAlcoolGasolinaShow] = useState(false);
+    const [modalMediaPorKmShow, setModalMediaPorKmShow] = useState(false);
+    const [modalQuantoIreiGastarShow, setModalQuantoIreiGastarShow] = useState(false);
+    const [modalSobreShow, setModalSobreShow] = useState(false);
+    const [modalSugestoesShow, setModalSugestoesShow] = useState(false);
 
     async function getPostos () {
         try {
@@ -172,40 +275,84 @@ export default function Home () {
 
                     <Tab.Pane eventKey="menu">
                         <ul className="menu-opcoes">
-                            <li onClick={() => { }}>Álcool x Gasolina</li>
-                            <li onClick={() => { }}>Média por Km percorrido</li>
-                            <li onClick={() => { }}>Quanto irei gastar?</li>
-                            <li onClick={() => { }}>Sobre o aplicativo</li>
-                            <li onClick={() => { }}>Sugestões, Bugs e Comentários</li>
+                            <li onClick={() => setModalAlcoolGasolinaShow(true)}>Álcool x Gasolina</li>
+                            <ModalAlcoolGasolina animation={false} show={modalAlcoolGasolinaShow} onHide={() => setModalAlcoolGasolinaShow(false)} />
+
+                            <li onClick={() => setModalMediaPorKmShow(true)}>Média por Km percorrido</li>
+                            <ModalMediaPorKm animation={false} show={modalMediaPorKmShow} onHide={() => setModalMediaPorKmShow(false)} />
+
+                            <li onClick={() => setModalQuantoIreiGastarShow(true)}>Quanto irei gastar?</li>
+                            <ModalQuantoIreiGastar animation={false} show={modalQuantoIreiGastarShow} onHide={() => setModalQuantoIreiGastarShow(false)} />
+
+                            <li onClick={() => setModalSobreShow(true)}>Sobre o aplicativo</li>
+                            <ModalSobre animation={false} show={modalSobreShow} onHide={() => setModalSobreShow(false)} />
+
+                            <li onClick={() => setModalSugestoesShow(true)}>Sugestões, Bugs e Comentários</li>
+                            <ModalSugestoes animation={false} show={modalSugestoesShow} onHide={() => setModalSugestoesShow(false)} />
                         </ul>
                     </Tab.Pane>
                 </Tab.Content>
 
                 <Nav variant="pills">
                     <Nav.Item>
-                        <Nav.Link eventKey="gasolina">
+                        <Nav.Link
+                            eventKey="gasolina"
+                            onClick={() => {
+                                setModalAlcoolGasolinaShow(false)
+                                setModalMediaPorKmShow(false)
+                                setModalQuantoIreiGastarShow(false)
+                                setModalSobreShow(false)
+                                setModalSugestoesShow(false)
+                            }}
+                        >
                             <span>Gasolina</span>
                         </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Nav.Link eventKey="alcool">
+                        <Nav.Link
+                            eventKey="alcool"
+                            onClick={() => {
+                                setModalAlcoolGasolinaShow(false)
+                                setModalMediaPorKmShow(false)
+                                setModalQuantoIreiGastarShow(false)
+                                setModalSobreShow(false)
+                                setModalSugestoesShow(false)
+                            }}
+                        >
                             <span>Álcool</span>
                         </Nav.Link>
                     </Nav.Item>
-                    
+
                     <Nav.Item>
-                        <Nav.Link eventKey="diesel">
+                        <Nav.Link
+                            eventKey="diesel" onClick={() => {
+                                setModalAlcoolGasolinaShow(false)
+                                setModalMediaPorKmShow(false)
+                                setModalQuantoIreiGastarShow(false)
+                                setModalSobreShow(false)
+                                setModalSugestoesShow(false)
+                            }}
+                        >
                             <span>Diesel</span>
                         </Nav.Link>
                     </Nav.Item>
-                    
+
                     <Nav.Item>
-                        <Nav.Link eventKey='gas'>
+                        <Nav.Link
+                            eventKey='gas'
+                            onClick={() => {
+                                setModalAlcoolGasolinaShow(false)
+                                setModalMediaPorKmShow(false)
+                                setModalQuantoIreiGastarShow(false)
+                                setModalSobreShow(false)
+                                setModalSugestoesShow(false)
+                            }}
+                        >
                             <span>Gnv</span>
                         </Nav.Link>
                     </Nav.Item>
-                    
+
                     <Nav.Item>
                         <Nav.Link eventKey="menu">
                             <span>Menu</span>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Header from '../../components/Header';
-
 import './styles.css';
 
 export default function MediaPorKm () {
@@ -18,8 +16,7 @@ export default function MediaPorKm () {
     }
 
     return (
-        <div className="box">
-            <Header />
+        <>
             <form onSubmit={handleCalculate}>
                 <input
                     type="text"
@@ -46,6 +43,6 @@ export default function MediaPorKm () {
                     Foram percorridos {kmPorLitro} Km/litro
                 </p>
             </div>
-        </div>
+        </>
     );
 }

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Header from '../../components/Header';
-
 import './styles.css';
 
 export default function AlcoolGasolina () {
@@ -17,8 +15,7 @@ export default function AlcoolGasolina () {
     }
 
     return (
-        <div className="box">
-            <Header />
+        <>
             <form onSubmit={handleCalculate}>
                 <input
                     type="text"
@@ -45,6 +42,6 @@ export default function AlcoolGasolina () {
                     Melhor abastecer com: {combustivel}
                 </p>
             </div>
-        </div>
+        </>
     );
 }
