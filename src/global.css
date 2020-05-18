@@ -56,11 +56,11 @@ form input {
   background: transparent;
   border: 1px solid #b7c0ee;
   border-radius: 4px;
-  margin-bottom: 15px;
-  height: 36px;
+  margin-bottom: 10px;
+  height: 32px;
   padding: 5px 10px;
   color: #b7c0ee;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 form input::placeholder {
@@ -71,21 +71,21 @@ form textarea {
   background: transparent;
   border: 1px solid #b7c0ee;
   border-radius: 4px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding: 10px;
   color: #b7c0ee;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 form button {
-  height: 36px;
+  height: 32px;
   padding: 5px 10px;
   border-radius: 4px;
   outline: 0;
   background: transparent;
   border: 1px solid #b7c0ee;
   color: #b7c0ee;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
@@ -96,9 +96,9 @@ form button:hover {
 }
 
 form a {
-  height: 36px;
+  height: 32px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   color: #b7c0ee;
   font-weight: bold;

@@ -10,6 +10,7 @@ import {
 
 import {
     FiMapPin,
+    FiArrowLeft,
 } from "react-icons/fi";
 
 import shell from '../../assets/img/shell.png';
@@ -31,17 +32,14 @@ import api from '../../services/api';
 function ModalAlcoolGasolina (props) {
     return (
         <Modal {...props}>
-            <Modal.Header closeButton>
-                <Modal.Title>
+            <Modal.Header></Modal.Header>
 
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <AlcoolGasolina />
+                <FiArrowLeft size={20} onClick={props.onHide} />
             </Modal.Body>
-            <Modal.Footer>
 
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
         </Modal>
     );
 }
@@ -49,17 +47,14 @@ function ModalAlcoolGasolina (props) {
 function ModalMediaPorKm (props) {
     return (
         <Modal {...props}>
-            <Modal.Header closeButton>
-                <Modal.Title>
+            <Modal.Header></Modal.Header>
 
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <MediaPorKm />
+                <FiArrowLeft size={20} onClick={props.onHide} />
             </Modal.Body>
-            <Modal.Footer>
 
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
         </Modal>
     );
 }
@@ -67,17 +62,14 @@ function ModalMediaPorKm (props) {
 function ModalQuantoIreiGastar (props) {
     return (
         <Modal {...props}>
-            <Modal.Header closeButton>
-                <Modal.Title>
+            <Modal.Header></Modal.Header>
 
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <QuantoIreiGastar />
+                <FiArrowLeft size={20} onClick={props.onHide} />
             </Modal.Body>
-            <Modal.Footer>
 
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
         </Modal>
     );
 }
@@ -85,17 +77,14 @@ function ModalQuantoIreiGastar (props) {
 function ModalSobre (props) {
     return (
         <Modal {...props}>
-            <Modal.Header closeButton>
-                <Modal.Title>
+            <Modal.Header></Modal.Header>
 
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <Sobre />
+                <FiArrowLeft size={20} onClick={props.onHide} />
             </Modal.Body>
-            <Modal.Footer>
 
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
         </Modal>
     );
 }
@@ -103,17 +92,14 @@ function ModalSobre (props) {
 function ModalSugestoes (props) {
     return (
         <Modal {...props}>
-            <Modal.Header closeButton>
-                <Modal.Title>
+            <Modal.Header></Modal.Header>
 
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <Sugestoes />
+                <FiArrowLeft size={20} onClick={props.onHide} />
             </Modal.Body>
-            <Modal.Footer>
 
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
         </Modal>
     );
 }
