@@ -11,12 +11,13 @@ export default function Sugestoes () {
         e.preventDefault();
 
         try {
-            await api.post('/sugestoes', {
-                sugestoes,
+            await api.post('/comentarios', {
+                descricao: sugestoes,
             });
         } catch (error) {
             alert("Erro ao enviar as sugestões");
         }
+        setSugestoes('');
     }
 
     return (
