@@ -16,13 +16,15 @@ import {
 import shell from '../../assets/img/shell.png';
 import menorPreco from '../../assets/img/menor-preco.png';
 import petrobras from '../../assets/img/petrobras.png';
+import ipiranga from '../../assets/img/ipiranga.jpg';
+import outros from '../../assets/img/outros.jpg';
 
 import Header from '../../components/Header';
-import AlcoolGasolina from '../../pages/AlcoolGasolina';
-import MediaPorKm from '../../pages/MediaPorKm';
-import QuantoIreiGastar from '../../pages/QuantoIreiGastar';
-import Sobre from '../../pages/Sobre';
-import Sugestoes from '../../pages/Sugestoes';
+import AlcoolGasolina from '../../components/AlcoolGasolina';
+import MediaPorKm from '../../components/MediaPorKm';
+import QuantoIreiGastar from '../../components/QuantoIreiGastar';
+import Sobre from '../../components/Sobre';
+import Sugestoes from '../../components/Sugestoes';
 
 
 import './styles.css';
@@ -148,7 +150,15 @@ export default function Home () {
                             (
                                 <Card key={posto.id}>
                                     <Card.Header>
-                                        <img src={(posto.bandeira === "shell" ? shell : (posto.bandeira === "menor-preco") ? menorPreco : petrobras)} alt="" />
+                                        <img
+                                            src={
+                                                (posto.bandeira === "shell" ? shell :
+                                                    (posto.bandeira === "menor") ? menorPreco :
+                                                        (posto.bandeira === "petrobras") ? petrobras :
+                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                            }
+                                            alt=""
+                                        />
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
@@ -178,7 +188,15 @@ export default function Home () {
                             (
                                 <Card key={posto.id}>
                                     <Card.Header>
-                                        <img src={(posto.bandeira === "shell" ? shell : (posto.bandeira === "menor-preco") ? menorPreco : petrobras)} alt="" />
+                                        <img
+                                            src={
+                                                (posto.bandeira === "shell" ? shell :
+                                                    (posto.bandeira === "menor") ? menorPreco :
+                                                        (posto.bandeira === "petrobras") ? petrobras :
+                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                            }
+                                            alt=""
+                                        />
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
@@ -208,7 +226,15 @@ export default function Home () {
                             (
                                 <Card key={posto.id}>
                                     <Card.Header>
-                                        <img src={(posto.bandeira === "shell" ? shell : (posto.bandeira === "menor-preco") ? menorPreco : petrobras)} alt="" />
+                                        <img
+                                            src={
+                                                (posto.bandeira === "shell" ? shell :
+                                                    (posto.bandeira === "menor") ? menorPreco :
+                                                        (posto.bandeira === "petrobras") ? petrobras :
+                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                            }
+                                            alt=""
+                                        />
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
@@ -238,7 +264,15 @@ export default function Home () {
                             (
                                 <Card key={posto.id}>
                                     <Card.Header>
-                                        <img src={(posto.bandeira === "shell" ? shell : (posto.bandeira === "menor-preco") ? menorPreco : petrobras)} alt="" />
+                                        <img
+                                            src={
+                                                (posto.bandeira === "shell" ? shell :
+                                                    (posto.bandeira === "menor") ? menorPreco :
+                                                        (posto.bandeira === "petrobras") ? petrobras :
+                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                            }
+                                            alt=""
+                                        />
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>

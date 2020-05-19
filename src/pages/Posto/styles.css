@@ -3,19 +3,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 36px 15px;
-    padding-top: 50px;
-    height: 100vh;
+    padding: 25px 15px;
+    padding-top: 65px;
+}
+
+.box-posto svg.arrow-goback {
+    position: fixed;
+    top: 65px;
+    left: 15px;
+    cursor: pointer;
 }
 
 .box-posto .card {
     display: flex;
     flex-direction: column;
-    /* flex: 1; */
     width: 100%;
     border: 0;
     border-radius: 4px;
-    margin-top: 15px;
+    margin-top: 35px;
     background: transparent;
 }
 
@@ -67,6 +72,8 @@
 .box-posto .card .card-body ul.combustiveis li {
     display: flex;
     justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .box-posto .card .card-body ul.combustiveis li + li {
@@ -94,6 +101,29 @@
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+}
+
+.box-posto .card .card-body a {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+    color: #f9f9f9;
+    background: #7067cf;
+    text-decoration: none;
+}
+
+.box-posto .card .card-body a:hover {
+    background: #7067cfee;
+    transition: 0.3s;
+}
+
+.box-posto .card .card-body a span {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
 }
 
 .box-posto .card .card-body button {
