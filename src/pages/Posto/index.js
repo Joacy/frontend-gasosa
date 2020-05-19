@@ -26,6 +26,8 @@ export default class Posto extends Component {
         posto: {},
         combustiveisArray: [],
         distancia: 0,
+        latitude: '',
+        longitude: '',
     }
 
     async componentDidMount () {
@@ -45,8 +47,37 @@ export default class Posto extends Component {
         }
     }
 
+    componentWillMount () {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+
+                this.setState({ latitude: latitude });
+                this.setState({ longitude: longitude });
+            },
+            (err) => {
+                console.log(err);
+            },
+            {
+                timeout: 30000,
+            }
+        );
+    }
+
+    handleDistance (lat1, lon1, lat2, lon2) {
+        let R = 6371;
+        let dLat = (lat2 - lat1) * (Math.PI / 180);
+        let dLon = (lon2 - lon1) * (Math.PI / 180);
+
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        let d = R * c
+
+        return d;
+    }
+
     render () {
-        const { posto, combustiveisArray, distancia } = this.state;
+        const { posto, combustiveisArray, distancia, latitude, longitude } = this.state;
         const { history } = this.props;
 
         return (
@@ -77,7 +108,7 @@ export default class Posto extends Component {
                             ))}
                         </ul>
 
-                        <h5>Situado a {distancia} Km do seu local</h5>
+                        <h5>{posto.latitude !== null ? `Situado a ${this.handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km do seu local` : ''}</h5>
 
                         <div className="acoes">
                             <a href={posto.url} target="_blank"><FiCornerUpRight /> <span>Ver no mapa</span></a>

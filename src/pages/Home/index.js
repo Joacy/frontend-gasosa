@@ -116,6 +116,26 @@ export default function Home () {
     const [modalSobreShow, setModalSobreShow] = useState(false);
     const [modalSugestoesShow, setModalSugestoesShow] = useState(false);
 
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+
+                setLatitude(latitude);
+                setLongitude(longitude);
+            },
+            (err) => {
+                console.log(err);
+            },
+            {
+                timeout: 30000,
+            }
+        )
+    }, []);
+
     async function getPostos () {
         try {
             const response = await api.get('postos');
@@ -131,8 +151,16 @@ export default function Home () {
         getPostos();
     }, []);
 
-    function handleDistance () {
-        setDistancia(0);
+    function handleDistance (lat1, lon1, lat2, lon2) {
+        let R = 6371;
+        let dLat = (lat2 - lat1) * (Math.PI / 180);
+        let dLon = (lon2 - lon1) * (Math.PI / 180);
+
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        let d = R * c
+
+        return d;
     }
 
     return (
@@ -162,7 +190,7 @@ export default function Home () {
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco}</h4>
+                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
                                             {posto.combustiveis.map(combustivel =>
@@ -200,7 +228,7 @@ export default function Home () {
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco}</h4>
+                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
                                             {posto.combustiveis.map(combustivel =>
@@ -238,7 +266,7 @@ export default function Home () {
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco}</h4>
+                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
                                             {posto.combustiveis.map(combustivel =>
@@ -276,7 +304,7 @@ export default function Home () {
                                         <h3>{posto.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco}</h4>
+                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
                                             {posto.combustiveis.map(combustivel =>
