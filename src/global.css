@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap");
 
 * {
   padding: 0;
@@ -91,7 +91,7 @@ form button {
 
 form button:hover {
   background: #b7c0ee;
-  color: #7067cf;
+  color: #330c2f;
   transition: 0.3s;
 }
 
