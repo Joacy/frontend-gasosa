@@ -108,6 +108,12 @@ function ModalSugestoes (props) {
 
 export default function Home () {
     const [postos, setPostos] = useState([]);
+    const [combustiveis, setCombustiveis] = useState([]);
+    const [gasolinas, setGasolinas] = useState([]);
+    const [etanols, setEtanols] = useState([]);
+    const [gnvs, setGnvs] = useState([]);
+    const [diesels, setDiesels] = useState([]);
+
     const [distancia, setDistancia] = useState('');
 
     const [modalAlcoolGasolinaShow, setModalAlcoolGasolinaShow] = useState(false);
@@ -139,9 +145,10 @@ export default function Home () {
     async function getPostos () {
         try {
             const response = await api.get('postos');
-            console.log(response.data);
 
             setPostos(response.data);
+
+            console.log(response.data);
         } catch (error) {
             alert('Erro ao obter os dados');
         }
@@ -149,6 +156,26 @@ export default function Home () {
 
     useEffect(() => {
         getPostos();
+    }, []);
+
+    async function getCombustiveis () {
+        try {
+            const response = await api.get('combustiveis');
+
+            setCombustiveis(response.data);
+
+            console.log(response.data);
+        } catch (error) {
+            alert('Erro ao obter os dados');
+        }
+    }
+
+    function maior (a, b) {
+        return a.valor < b.valor;
+    }
+
+    useEffect(() => {
+        getCombustiveis();
     }, []);
 
     function handleDistance (lat1, lon1, lat2, lon2) {
@@ -170,75 +197,118 @@ export default function Home () {
             <Tab.Container defaultActiveKey="gasolina">
                 <Tab.Content>
                     <Tab.Pane eventKey="gasolina">
-                        {postos.map(posto =>
-                            (posto.combustiveis.find(combustivel => (
-                                (combustivel.tipo.indexOf("GASOLINA") !== -1)
-                            )))
-                            &&
-                            (
-                                <Card key={posto.id}>
-                                    <Card.Header>
-                                        <img
-                                            src={
-                                                (posto.bandeira === "shell" ? shell :
-                                                    (posto.bandeira === "menor") ? menorPreco :
-                                                        (posto.bandeira === "petrobras") ? petrobras :
-                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
-                                            }
-                                            alt=""
-                                        />
-                                        <h3>{posto.nome}</h3>
-                                    </Card.Header>
-                                    <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
+                        <Tab.Container defaultActiveKey="comum">
+                            <Nav className="tipo-gasolina" variant="pills">
+                                <Nav.Item>
+                                    <Nav.Link eventKey="comum">
+                                        <span>Comum</span>
+                                    </Nav.Link>
+                                </Nav.Item>
 
-                                        <ul className="combustiveis">
-                                            {posto.combustiveis.map(combustivel =>
-                                                (combustivel.tipo.indexOf("GASOLINA") !== -1) && (
-                                                    <li key={combustivel.id}><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
-                                                ))}
-                                        </ul>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="aditivada">
+                                        <span>Aditivada</span>
+                                    </Nav.Link>
+                                </Nav.Item>
+                            </Nav>
 
-                                        <div className="links">
-                                            <Link to={`/postos/${posto.id}`}>Acessar</Link>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            ))}
+                            <Tab.Content>
+                                <Tab.Pane eventKey="comum">
+                                    {combustiveis.map(combustivel =>
+                                        (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
+                                        &&
+                                        (
+                                            <Card key={combustivel.id}>
+                                                <Card.Header>
+                                                    <img
+                                                        src={
+                                                            (combustivel.postos.bandeira === "shell" ? shell :
+                                                                (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                                    (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                        (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                        }
+                                                        alt=""
+                                                    />
+                                                    <h3>{combustivel.postos.nome}</h3>
+                                                </Card.Header>
+                                                <Card.Body>
+                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+
+                                                    <ul className="combustiveis">
+                                                        <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                                    </ul>
+
+                                                    <div className="links">
+                                                        <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>
+                                        ))}
+                                </Tab.Pane>
+
+                                <Tab.Pane eventKey="aditivada">
+                                    {combustiveis.map(combustivel =>
+                                        (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1)
+                                        &&
+                                        (
+                                            <Card key={combustivel.id}>
+                                                <Card.Header>
+                                                    <img
+                                                        src={
+                                                            (combustivel.postos.bandeira === "shell" ? shell :
+                                                                (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                                    (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                        (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                        }
+                                                        alt=""
+                                                    />
+                                                    <h3>{combustivel.postos.nome}</h3>
+                                                </Card.Header>
+                                                <Card.Body>
+                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+
+                                                    <ul className="combustiveis">
+                                                        <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                                    </ul>
+
+                                                    <div className="links">
+                                                        <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
+                                                    </div>
+                                                </Card.Body>
+                                            </Card>
+                                        ))}
+                                </Tab.Pane>
+                            </Tab.Content>
+                        </Tab.Container>
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="alcool">
-                        {postos.map(posto =>
-                            (posto.combustiveis.find(combustivel => (
-                                (combustivel.tipo.indexOf("ETANOL") !== -1)
-                            )))
+                        {combustiveis.map(combustivel =>
+                            (combustivel.tipo.indexOf("ETANOL") !== -1)
                             &&
                             (
-                                <Card key={posto.id}>
+                                <Card key={combustivel.id}>
                                     <Card.Header>
                                         <img
                                             src={
-                                                (posto.bandeira === "shell" ? shell :
-                                                    (posto.bandeira === "menor") ? menorPreco :
-                                                        (posto.bandeira === "petrobras") ? petrobras :
-                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                                (combustivel.postos.bandeira === "shell" ? shell :
+                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
                                             }
                                             alt=""
                                         />
-                                        <h3>{posto.nome}</h3>
+                                        <h3>{combustivel.postos.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
-                                            {posto.combustiveis.map(combustivel =>
-                                                (combustivel.tipo.indexOf("ETANOL") !== -1) && (
-                                                    <li key={combustivel.id}><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
-                                                ))}
+                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
                                         </ul>
 
                                         <div className="links">
-                                            <Link to={`/postos/${posto.id}`}>Acessar</Link>
+                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
                                         </div>
                                     </Card.Body>
                                 </Card>
@@ -246,37 +316,32 @@ export default function Home () {
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="diesel">
-                        {postos.map(posto =>
-                            (posto.combustiveis.find(combustivel => (
-                                (combustivel.tipo.indexOf("DIESEL") !== -1)
-                            )))
+                        {combustiveis.map(combustivel =>
+                            (combustivel.tipo.indexOf("DIESEL") !== -1)
                             &&
                             (
-                                <Card key={posto.id}>
+                                <Card key={combustivel.id}>
                                     <Card.Header>
                                         <img
                                             src={
-                                                (posto.bandeira === "shell" ? shell :
-                                                    (posto.bandeira === "menor") ? menorPreco :
-                                                        (posto.bandeira === "petrobras") ? petrobras :
-                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                                (combustivel.postos.bandeira === "shell" ? shell :
+                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
                                             }
                                             alt=""
                                         />
-                                        <h3>{posto.nome}</h3>
+                                        <h3>{combustivel.postos.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
-                                            {posto.combustiveis.map(combustivel =>
-                                                (combustivel.tipo.indexOf("DIESEL") !== -1) && (
-                                                    <li key={combustivel.id}><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
-                                                ))}
+                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
                                         </ul>
 
                                         <div className="links">
-                                            <Link to={`/postos/${posto.id}`}>Acessar</Link>
+                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
                                         </div>
                                     </Card.Body>
                                 </Card>
@@ -284,37 +349,32 @@ export default function Home () {
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="gas">
-                        {postos.map(posto =>
-                            (posto.combustiveis.find(combustivel => (
-                                (combustivel.tipo.indexOf("GNV") !== -1)
-                            )))
+                        {combustiveis.map(combustivel =>
+                            (combustivel.tipo.indexOf("GNV") !== -1)
                             &&
                             (
-                                <Card key={posto.id}>
+                                <Card key={combustivel.id}>
                                     <Card.Header>
                                         <img
                                             src={
-                                                (posto.bandeira === "shell" ? shell :
-                                                    (posto.bandeira === "menor") ? menorPreco :
-                                                        (posto.bandeira === "petrobras") ? petrobras :
-                                                            (posto.bandeira === "ipiranga") ? ipiranga : outros)
+                                                (combustivel.postos.bandeira === "shell" ? shell :
+                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
                                             }
                                             alt=""
                                         />
-                                        <h3>{posto.nome}</h3>
+                                        <h3>{combustivel.postos.nome}</h3>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {posto.endereco} {posto.latitude !== null ? `, a ${handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
 
                                         <ul className="combustiveis">
-                                            {posto.combustiveis.map(combustivel =>
-                                                (combustivel.tipo.indexOf("GNV") !== -1) && (
-                                                    <li key={combustivel.id}><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
-                                                ))}
+                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
                                         </ul>
 
                                         <div className="links">
-                                            <Link to={`/postos/${posto.id}`}>Acessar</Link>
+                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
                                         </div>
                                     </Card.Body>
                                 </Card>

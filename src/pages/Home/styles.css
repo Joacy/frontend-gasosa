@@ -238,3 +238,28 @@ body.modal-open {
 .modal .modal-content .modal-footer {
     display: none;
 }
+
+.box-home .nav.nav-pills.tipo-gasolina {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    height: auto;
+    background: #f9f9f9;
+    box-shadow: 5px 5px 15px 0px #330c2f;
+    margin-top: 25px;
+}
+
+.box-home .nav.nav-pills.tipo-gasolina .nav-item {
+    width: 100%;
+    max-width: 50%;
+}
+
+.box-home .nav.nav-pills.tipo-gasolina .nav-item .nav-link {
+    height: auto;
+    border-radius: 4px;
+}
