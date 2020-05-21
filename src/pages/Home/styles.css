@@ -24,12 +24,12 @@
 
 .box-home .card .card-header {
     background: #7b287d;
-    padding: 15px 10px;
+    padding: 10px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -46,9 +46,28 @@
     text-align: center;
 }
 
+.box-home .card .card-header button {
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    color: #f9f9f9;
+    outline: 0;
+}
+
+.box-home .card .card-header button:hover {
+    background: #f9f9f9;
+    color: #330c2f;
+    transition: 0.3s;
+}
+
 .box-home .card .card-body {
     background: #f9f9f9;
-    padding: 15px 10px;
+    padding: 10px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border: 0;
@@ -61,37 +80,41 @@
     color: #7b287d;
 }
 
-.box-home .card .card-body ul.combustiveis {
+.box-home .card .card-body ul.informacoes {
     list-style: none;
     margin: 0;
-    margin: 15px 0;
-}
-
-.box-home .card .card-body ul.combustiveis li {
+    margin: 12px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.box-home .card .card-body ul.combustiveis li + li {
-    padding-top: 5px;
+.box-home .card .card-body ul.informacoes .combustiveis {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.box-home .card .card-body ul.combustiveis li span {
-    font-size: 13px;
+.box-home .card .card-body h6 {
+    text-align: center;
+    font-size: 10px;
     font-weight: bold;
     color: #7b287d;
 }
 
-.box-home .card .card-body ul.combustiveis li span + span {
-    margin-left: 10px;
+.box-home .card .card-body ul.informacoes .combustiveis h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #7b287d;
 }
 
-.box-home .card .card-body .links a {
+.box-home .card .card-body ul.informacoes li a {
     color: #7b287d;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
+    padding: 3px;
     border: 1px solid #7b287d;
     border-radius: 4px;
     text-decoration: none;
@@ -99,10 +122,14 @@
     font-weight: bold;
 }
 
-.box-home .card .card-body .links a:hover {
+.box-home .card .card-body ul.informacoes li a:hover {
     background: #7b287d;
     color: #f9f9f9;
     transition: 0.3s;
+}
+
+.box-home .card .card-body ul.informacoes li a span {
+    margin-left: 3px;
 }
 
 .box-home .nav.nav-pills {

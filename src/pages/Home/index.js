@@ -11,6 +11,8 @@ import {
 import {
     FiMapPin,
     FiArrowLeft,
+    FiShare2,
+    FiCornerUpRight,
 } from "react-icons/fi";
 
 import shell from '../../assets/img/shell.png';
@@ -230,17 +232,28 @@ export default function Home () {
                                                         alt=""
                                                     />
                                                     <h3>{combustivel.postos.nome}</h3>
+                                                    <button><FiShare2 size={20} /></button>
                                                 </Card.Header>
                                                 <Card.Body>
-                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
-                                                    <ul className="combustiveis">
-                                                        <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                                    <ul className="informacoes">
+                                                        <li>
+                                                            <div className="combustiveis">
+                                                                <h3>{combustivel.valor}</h3>
+                                                            </div>
+                                                        </li>
+
+                                                        <li>
+                                                            <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                        </li>
                                                     </ul>
 
-                                                    <div className="links">
-                                                        <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
-                                                    </div>
+                                                    <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                                 </Card.Body>
                                             </Card>
                                         ))}
@@ -263,17 +276,28 @@ export default function Home () {
                                                         alt=""
                                                     />
                                                     <h3>{combustivel.postos.nome}</h3>
+                                                    <button><FiShare2 size={20} /></button>
                                                 </Card.Header>
                                                 <Card.Body>
-                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
-                                                    <ul className="combustiveis">
-                                                        <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                                    <ul className="informacoes">
+                                                        <li>
+                                                            <div className="combustiveis">
+                                                                <h3>{combustivel.valor}</h3>
+                                                            </div>
+                                                        </li>
+
+                                                        <li>
+                                                            <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                        </li>
                                                     </ul>
 
-                                                    <div className="links">
-                                                        <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
-                                                    </div>
+                                                    <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                                 </Card.Body>
                                             </Card>
                                         ))}
@@ -299,17 +323,28 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
+                                        <button><FiShare2 size={20} /></button>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
-                                        <ul className="combustiveis">
-                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                        <ul className="informacoes">
+                                            <li>
+                                                <div className="combustiveis">
+                                                    <h3>{combustivel.valor}</h3>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                            </li>
+
+                                            <li>
+                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                            </li>
                                         </ul>
 
-                                        <div className="links">
-                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
-                                        </div>
+                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                     </Card.Body>
                                 </Card>
                             ))}
@@ -332,17 +367,28 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
+                                        <button><FiShare2 size={20} /></button>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
-                                        <ul className="combustiveis">
-                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                        <ul className="informacoes">
+                                            <li>
+                                                <div className="combustiveis">
+                                                    <h3>{combustivel.valor}</h3>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                            </li>
+
+                                            <li>
+                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                            </li>
                                         </ul>
 
-                                        <div className="links">
-                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
-                                        </div>
+                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                     </Card.Body>
                                 </Card>
                             ))}
@@ -365,17 +411,28 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
+                                        <button><FiShare2 size={20} /></button>
                                     </Card.Header>
                                     <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco} {combustivel.postos.latitude !== null ? `, a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
-                                        <ul className="combustiveis">
-                                            <li><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
+                                        <ul className="informacoes">
+                                            <li>
+                                                <div className="combustiveis">
+                                                    <h3>{combustivel.valor}</h3>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                            </li>
+
+                                            <li>
+                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                            </li>
                                         </ul>
 
-                                        <div className="links">
-                                            <Link to={`/postos/${combustivel.postos.id}`}>Acessar</Link>
-                                        </div>
+                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                     </Card.Body>
                                 </Card>
                             ))}
