@@ -265,7 +265,8 @@ export default function Home () {
 
                                                             <Dropdown.Item>
                                                                 <FacebookShareButton
-                                                                    url={
+                                                                    url="gasosaweb.herokuapp.com"
+                                                                    quote={
                                                                         `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                                     }
                                                                 >
@@ -285,7 +286,8 @@ export default function Home () {
 
                                                             <Dropdown.Item>
                                                                 <TwitterShareButton
-                                                                    url={
+                                                                    url="gasosaweb.herokuapp.com"
+                                                                    title={
                                                                         `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                                     }
                                                                 >
@@ -357,7 +359,8 @@ export default function Home () {
 
                                                             <Dropdown.Item>
                                                                 <FacebookShareButton
-                                                                    url={
+                                                                    url="gasosaweb.herokuapp.com"
+                                                                    quote={
                                                                         `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                                     }
                                                                 >
@@ -377,7 +380,8 @@ export default function Home () {
 
                                                             <Dropdown.Item>
                                                                 <TwitterShareButton
-                                                                    url={
+                                                                    url="gasosaweb.herokuapp.com"
+                                                                    title={
                                                                         `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                                     }
                                                                 >
@@ -452,7 +456,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <FacebookShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        quote={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -472,7 +477,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <TwitterShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        title={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -544,7 +550,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <FacebookShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        quote={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -564,7 +571,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <TwitterShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        title={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -636,7 +644,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <FacebookShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        quote={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -656,7 +665,8 @@ export default function Home () {
 
                                                 <Dropdown.Item>
                                                     <TwitterShareButton
-                                                        url={
+                                                        url="gasosaweb.herokuapp.com"
+                                                        title={
                                                             `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
                                                         }
                                                     >
@@ -779,6 +789,6 @@ export default function Home () {
                     </Nav.Item>
                 </Nav>
             </Tab.Container>
-        </div>
+        </div >
     );
 }
