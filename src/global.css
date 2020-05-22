@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap");
 
 * {
   padding: 0;
@@ -16,6 +16,7 @@ body {
   background: linear-gradient(90deg, #330c2f, #7067cf);
   color: #b7c0ee;
   -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
 
 body.modal-open {

@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {
+    FacebookShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+} from "react-share";
+
+import {
+    FaWhatsapp,
+    FaFacebookF,
+    FaTelegramPlane,
+    FaTwitter,
+} from "react-icons/fa";
 
 import {
     Card,
     Tab,
     Nav,
     Modal,
+    Dropdown,
 } from 'react-bootstrap';
 
 import {
@@ -232,8 +246,56 @@ export default function Home () {
                                                         alt=""
                                                     />
                                                     <h3>{combustivel.postos.nome}</h3>
-                                                    <button><FiShare2 size={20} /></button>
+
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle variant="success">
+                                                            <FiShare2 size={20} />
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item>
+                                                                <WhatsappShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaWhatsapp size={20} />
+                                                                </WhatsappShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <FacebookShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaFacebookF size={20} />
+                                                                </FacebookShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <TelegramShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaTelegramPlane size={20} />
+                                                                </TelegramShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <TwitterShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaTwitter size={20} />
+                                                                </TwitterShareButton>
+                                                            </Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
                                                 </Card.Header>
+
                                                 <Card.Body>
                                                     <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
@@ -276,8 +338,56 @@ export default function Home () {
                                                         alt=""
                                                     />
                                                     <h3>{combustivel.postos.nome}</h3>
-                                                    <button><FiShare2 size={20} /></button>
+
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle variant="success">
+                                                            <FiShare2 size={20} />
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item>
+                                                                <WhatsappShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaWhatsapp size={20} />
+                                                                </WhatsappShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <FacebookShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaFacebookF size={20} />
+                                                                </FacebookShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <TelegramShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaTelegramPlane size={20} />
+                                                                </TelegramShareButton>
+                                                            </Dropdown.Item>
+
+                                                            <Dropdown.Item>
+                                                                <TwitterShareButton
+                                                                    url={
+                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                    }
+                                                                >
+                                                                    <FaTwitter size={20} />
+                                                                </TwitterShareButton>
+                                                            </Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
                                                 </Card.Header>
+
                                                 <Card.Body>
                                                     <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
@@ -323,8 +433,56 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
-                                        <button><FiShare2 size={20} /></button>
+
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="success">
+                                                <FiShare2 size={20} />
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item>
+                                                    <WhatsappShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaWhatsapp size={20} />
+                                                    </WhatsappShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <FacebookShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaFacebookF size={20} />
+                                                    </FacebookShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TelegramShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTelegramPlane size={20} />
+                                                    </TelegramShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TwitterShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTwitter size={20} />
+                                                    </TwitterShareButton>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Card.Header>
+
                                     <Card.Body>
                                         <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
@@ -367,8 +525,56 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
-                                        <button><FiShare2 size={20} /></button>
+
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="success">
+                                                <FiShare2 size={20} />
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item>
+                                                    <WhatsappShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaWhatsapp size={20} />
+                                                    </WhatsappShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <FacebookShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaFacebookF size={20} />
+                                                    </FacebookShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TelegramShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTelegramPlane size={20} />
+                                                    </TelegramShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TwitterShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTwitter size={20} />
+                                                    </TwitterShareButton>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Card.Header>
+
                                     <Card.Body>
                                         <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
@@ -411,8 +617,56 @@ export default function Home () {
                                             alt=""
                                         />
                                         <h3>{combustivel.postos.nome}</h3>
-                                        <button><FiShare2 size={20} /></button>
+
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="success">
+                                                <FiShare2 size={20} />
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item>
+                                                    <WhatsappShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaWhatsapp size={20} />
+                                                    </WhatsappShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <FacebookShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaFacebookF size={20} />
+                                                    </FacebookShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TelegramShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTelegramPlane size={20} />
+                                                    </TelegramShareButton>
+                                                </Dropdown.Item>
+
+                                                <Dropdown.Item>
+                                                    <TwitterShareButton
+                                                        url={
+                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                        }
+                                                    >
+                                                        <FaTwitter size={20} />
+                                                    </TwitterShareButton>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Card.Header>
+
                                     <Card.Body>
                                         <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
 
