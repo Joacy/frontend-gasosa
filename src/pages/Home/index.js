@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import {
     FacebookShareButton,
     TelegramShareButton,
@@ -123,7 +124,6 @@ function ModalSugestoes (props) {
 }
 
 export default function Home () {
-    const [postos, setPostos] = useState([]);
     const [combustiveis, setCombustiveis] = useState([]);
     const [gasolinas, setGasolinas] = useState([]);
     const [etanols, setEtanols] = useState([]);
@@ -156,22 +156,6 @@ export default function Home () {
                 timeout: 30000,
             }
         )
-    }, []);
-
-    async function getPostos () {
-        try {
-            const response = await api.get('postos');
-
-            setPostos(response.data);
-
-            console.log(response.data);
-        } catch (error) {
-            alert('Erro ao obter os dados');
-        }
-    }
-
-    useEffect(() => {
-        getPostos();
     }, []);
 
     async function getCombustiveis () {
