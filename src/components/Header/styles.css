@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
     background: #f9f9f9;
     color: #330c2f;
     box-shadow: 5px 5px 15px 0px #330c2f;
@@ -52,6 +51,8 @@
 }
 
 .navbar #navegacao ul li a {
+    display: flex;
+    align-items: center;
     border: 1px solid #7b287dcc;
     color: #7b287dcc;
     font-size: 13px;
@@ -59,6 +60,10 @@
     text-decoration: none;
     padding: 3px 7px;
     border-radius: 4px;
+}
+
+.navbar #navegacao ul li a span {
+    margin-left: 5px;
 }
 
 .navbar #navegacao ul li:hover a {

@@ -5,10 +5,13 @@ import {
     Navbar,
     Container,
     Row,
-    Col,
 } from "react-bootstrap";
 
-import { FiMenu } from 'react-icons/fi';
+import {
+    FiMenu,
+    FiSearch,
+} from 'react-icons/fi';
+
 import logo from '../../assets/img/logo.png';
 
 import './styles.css';
@@ -27,12 +30,12 @@ export default function Header () {
                     <Navbar.Toggle aria-controls="navegacao">
                         <FiMenu size={24} color="#330c2f" />
                     </Navbar.Toggle>
-                    
+
                     <Navbar.Collapse id="navegacao">
                         <ul>
                             <li>
                                 <Link to='/postos'>
-                                    <span>Postos</span>
+                                    <FiSearch /> <span>Postos</span>
                                 </Link>
                             </li>
                         </ul>

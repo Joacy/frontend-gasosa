@@ -7,6 +7,7 @@ import {
 
 import {
     FiMapPin,
+    FiSearch,
 } from "react-icons/fi";
 
 import shell from '../../assets/img/shell.png';
@@ -46,11 +47,14 @@ export default function Postos () {
             <Header />
 
             <div className="box-postos">
-                <input
-                    type="text"
-                    value={query}
-                    onChange={e => setQuery(e.target.value)}
-                />
+                <div className="busca">
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={e => setQuery(e.target.value)}
+                    />
+                    <FiSearch size={16} />
+                </div>
 
                 {postos.map(posto =>
                     (query !== '' ? posto.nome.indexOf(query) !== -1 : posto.nome)

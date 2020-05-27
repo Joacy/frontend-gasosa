@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import {
     FacebookShareButton,
@@ -191,588 +190,630 @@ export default function Home () {
     }
 
     return (
-        <div className="box-home">
+        <>
             <Header />
 
-            <Tab.Container defaultActiveKey="gasolina">
-                <Tab.Content>
-                    <Tab.Pane eventKey="gasolina">
-                        <Tab.Container defaultActiveKey="comum">
-                            <Nav className="tipo-gasolina" variant="pills">
-                                <Nav.Item>
-                                    <Nav.Link eventKey="comum">
-                                        <span>Comum</span>
-                                    </Nav.Link>
-                                </Nav.Item>
-
-                                <Nav.Item>
-                                    <Nav.Link eventKey="aditivada">
-                                        <span>Aditivada</span>
-                                    </Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-
-                            <Tab.Content>
-                                <Tab.Pane eventKey="comum">
-                                    {combustiveis.map(combustivel =>
-                                        (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
-                                        &&
-                                        (
-                                            <Card key={combustivel.id}>
-                                                <Card.Header>
-                                                    <img
-                                                        src={
-                                                            (combustivel.postos.bandeira === "shell" ? shell :
-                                                                (combustivel.postos.bandeira === "menor") ? menorPreco :
-                                                                    (combustivel.postos.bandeira === "petrobras") ? petrobras :
-                                                                        (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
-                                                        }
-                                                        alt=""
-                                                    />
-                                                    <h3>{combustivel.postos.nome}</h3>
-
-                                                    <Dropdown>
-                                                        <Dropdown.Toggle variant="success">
-                                                            <FiShare2 size={20} />
-                                                        </Dropdown.Toggle>
-
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item>
-                                                                <WhatsappShareButton
-                                                                    url={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaWhatsapp size={20} />
-                                                                </WhatsappShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <FacebookShareButton
-                                                                    url="gasosaweb.herokuapp.com"
-                                                                    quote={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaFacebookF size={20} />
-                                                                </FacebookShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <TelegramShareButton
-                                                                    url={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaTelegramPlane size={20} />
-                                                                </TelegramShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <TwitterShareButton
-                                                                    url="gasosaweb.herokuapp.com"
-                                                                    title={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaTwitter size={20} />
-                                                                </TwitterShareButton>
-                                                            </Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
-                                                </Card.Header>
-
-                                                <Card.Body>
-                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
-
-                                                    <ul className="informacoes">
-                                                        <li>
-                                                            <div className="combustiveis">
-                                                                <h3>{combustivel.valor}</h3>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
-                                                </Card.Body>
-                                            </Card>
-                                        ))}
-                                </Tab.Pane>
-
-                                <Tab.Pane eventKey="aditivada">
-                                    {combustiveis.map(combustivel =>
-                                        (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1)
-                                        &&
-                                        (
-                                            <Card key={combustivel.id}>
-                                                <Card.Header>
-                                                    <img
-                                                        src={
-                                                            (combustivel.postos.bandeira === "shell" ? shell :
-                                                                (combustivel.postos.bandeira === "menor") ? menorPreco :
-                                                                    (combustivel.postos.bandeira === "petrobras") ? petrobras :
-                                                                        (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
-                                                        }
-                                                        alt=""
-                                                    />
-                                                    <h3>{combustivel.postos.nome}</h3>
-
-                                                    <Dropdown>
-                                                        <Dropdown.Toggle variant="success">
-                                                            <FiShare2 size={20} />
-                                                        </Dropdown.Toggle>
-
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item>
-                                                                <WhatsappShareButton
-                                                                    url={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaWhatsapp size={20} />
-                                                                </WhatsappShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <FacebookShareButton
-                                                                    url="gasosaweb.herokuapp.com"
-                                                                    quote={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaFacebookF size={20} />
-                                                                </FacebookShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <TelegramShareButton
-                                                                    url={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaTelegramPlane size={20} />
-                                                                </TelegramShareButton>
-                                                            </Dropdown.Item>
-
-                                                            <Dropdown.Item>
-                                                                <TwitterShareButton
-                                                                    url="gasosaweb.herokuapp.com"
-                                                                    title={
-                                                                        `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                                    }
-                                                                >
-                                                                    <FaTwitter size={20} />
-                                                                </TwitterShareButton>
-                                                            </Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
-                                                </Card.Header>
-
-                                                <Card.Body>
-                                                    <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
-
-                                                    <ul className="informacoes">
-                                                        <li>
-                                                            <div className="combustiveis">
-                                                                <h3>{combustivel.valor}</h3>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
-                                                </Card.Body>
-                                            </Card>
-                                        ))}
-                                </Tab.Pane>
-                            </Tab.Content>
-                        </Tab.Container>
-                    </Tab.Pane>
-
-                    <Tab.Pane eventKey="alcool">
-                        {combustiveis.map(combustivel =>
-                            (combustivel.tipo.indexOf("ETANOL") !== -1)
-                            &&
-                            (
-                                <Card key={combustivel.id}>
-                                    <Card.Header>
-                                        <img
-                                            src={
-                                                (combustivel.postos.bandeira === "shell" ? shell :
-                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
-                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
-                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
-                                            }
-                                            alt=""
-                                        />
-                                        <h3>{combustivel.postos.nome}</h3>
-
-                                        <Dropdown>
-                                            <Dropdown.Toggle variant="success">
-                                                <FiShare2 size={20} />
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item>
-                                                    <WhatsappShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaWhatsapp size={20} />
-                                                    </WhatsappShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <FacebookShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        quote={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaFacebookF size={20} />
-                                                    </FacebookShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TelegramShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTelegramPlane size={20} />
-                                                    </TelegramShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TwitterShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        title={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTwitter size={20} />
-                                                    </TwitterShareButton>
-                                                </Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </Card.Header>
-
-                                    <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
-
-                                        <ul className="informacoes">
-                                            <li>
-                                                <div className="combustiveis">
-                                                    <h3>{combustivel.valor}</h3>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
-                                            </li>
-
-                                            <li>
-                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
-                                            </li>
-                                        </ul>
-
-                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
-                                    </Card.Body>
-                                </Card>
-                            ))}
-                    </Tab.Pane>
-
-                    <Tab.Pane eventKey="diesel">
-                        {combustiveis.map(combustivel =>
-                            (combustivel.tipo.indexOf("DIESEL") !== -1)
-                            &&
-                            (
-                                <Card key={combustivel.id}>
-                                    <Card.Header>
-                                        <img
-                                            src={
-                                                (combustivel.postos.bandeira === "shell" ? shell :
-                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
-                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
-                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
-                                            }
-                                            alt=""
-                                        />
-                                        <h3>{combustivel.postos.nome}</h3>
-
-                                        <Dropdown>
-                                            <Dropdown.Toggle variant="success">
-                                                <FiShare2 size={20} />
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item>
-                                                    <WhatsappShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaWhatsapp size={20} />
-                                                    </WhatsappShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <FacebookShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        quote={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaFacebookF size={20} />
-                                                    </FacebookShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TelegramShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTelegramPlane size={20} />
-                                                    </TelegramShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TwitterShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        title={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTwitter size={20} />
-                                                    </TwitterShareButton>
-                                                </Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </Card.Header>
-
-                                    <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
-
-                                        <ul className="informacoes">
-                                            <li>
-                                                <div className="combustiveis">
-                                                    <h3>{combustivel.valor}</h3>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
-                                            </li>
-
-                                            <li>
-                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
-                                            </li>
-                                        </ul>
-
-                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
-                                    </Card.Body>
-                                </Card>
-                            ))}
-                    </Tab.Pane>
-
-                    <Tab.Pane eventKey="gas">
-                        {combustiveis.map(combustivel =>
-                            (combustivel.tipo.indexOf("GNV") !== -1)
-                            &&
-                            (
-                                <Card key={combustivel.id}>
-                                    <Card.Header>
-                                        <img
-                                            src={
-                                                (combustivel.postos.bandeira === "shell" ? shell :
-                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
-                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
-                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
-                                            }
-                                            alt=""
-                                        />
-                                        <h3>{combustivel.postos.nome}</h3>
-
-                                        <Dropdown>
-                                            <Dropdown.Toggle variant="success">
-                                                <FiShare2 size={20} />
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item>
-                                                    <WhatsappShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaWhatsapp size={20} />
-                                                    </WhatsappShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <FacebookShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        quote={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaFacebookF size={20} />
-                                                    </FacebookShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TelegramShareButton
-                                                        url={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTelegramPlane size={20} />
-                                                    </TelegramShareButton>
-                                                </Dropdown.Item>
-
-                                                <Dropdown.Item>
-                                                    <TwitterShareButton
-                                                        url="gasosaweb.herokuapp.com"
-                                                        title={
-                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
-                                                        }
-                                                    >
-                                                        <FaTwitter size={20} />
-                                                    </TwitterShareButton>
-                                                </Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </Card.Header>
-
-                                    <Card.Body>
-                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
-
-                                        <ul className="informacoes">
-                                            <li>
-                                                <div className="combustiveis">
-                                                    <h3>{combustivel.valor}</h3>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
-                                            </li>
-
-                                            <li>
-                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
-                                            </li>
-                                        </ul>
-
-                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
-                                    </Card.Body>
-                                </Card>
-                            ))}
-                    </Tab.Pane>
-
-                    <Tab.Pane eventKey="menu">
-                        <ul className="menu-opcoes">
-                            <li onClick={() => setModalAlcoolGasolinaShow(true)}>Álcool x Gasolina</li>
-                            <ModalAlcoolGasolina animation={false} show={modalAlcoolGasolinaShow} onHide={() => setModalAlcoolGasolinaShow(false)} />
-
-                            <li onClick={() => setModalMediaPorKmShow(true)}>Média por Km percorrido</li>
-                            <ModalMediaPorKm animation={false} show={modalMediaPorKmShow} onHide={() => setModalMediaPorKmShow(false)} />
-
-                            <li onClick={() => setModalQuantoIreiGastarShow(true)}>Quanto irei gastar?</li>
-                            <ModalQuantoIreiGastar animation={false} show={modalQuantoIreiGastarShow} onHide={() => setModalQuantoIreiGastarShow(false)} />
-
-                            <li onClick={() => setModalSobreShow(true)}>Sobre o aplicativo</li>
-                            <ModalSobre animation={false} show={modalSobreShow} onHide={() => setModalSobreShow(false)} />
-
-                            <li onClick={() => setModalSugestoesShow(true)}>Sugestões, Bugs e Comentários</li>
-                            <ModalSugestoes animation={false} show={modalSugestoesShow} onHide={() => setModalSugestoesShow(false)} />
-                        </ul>
-                    </Tab.Pane>
-                </Tab.Content>
-
-                <Nav variant="pills">
-                    <Nav.Item>
-                        <Nav.Link
-                            eventKey="gasolina"
-                            onClick={() => {
-                                setModalAlcoolGasolinaShow(false)
-                                setModalMediaPorKmShow(false)
-                                setModalQuantoIreiGastarShow(false)
-                                setModalSobreShow(false)
-                                setModalSugestoesShow(false)
-                            }}
-                        >
-                            <span>Gasolina</span>
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            eventKey="alcool"
-                            onClick={() => {
-                                setModalAlcoolGasolinaShow(false)
-                                setModalMediaPorKmShow(false)
-                                setModalQuantoIreiGastarShow(false)
-                                setModalSobreShow(false)
-                                setModalSugestoesShow(false)
-                            }}
-                        >
-                            <span>Álcool</span>
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            eventKey="diesel" onClick={() => {
-                                setModalAlcoolGasolinaShow(false)
-                                setModalMediaPorKmShow(false)
-                                setModalQuantoIreiGastarShow(false)
-                                setModalSobreShow(false)
-                                setModalSugestoesShow(false)
-                            }}
-                        >
-                            <span>Diesel</span>
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            eventKey='gas'
-                            onClick={() => {
-                                setModalAlcoolGasolinaShow(false)
-                                setModalMediaPorKmShow(false)
-                                setModalQuantoIreiGastarShow(false)
-                                setModalSobreShow(false)
-                                setModalSugestoesShow(false)
-                            }}
-                        >
-                            <span>Gnv</span>
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link eventKey="menu">
-                            <span>Menu</span>
-                        </Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </Tab.Container>
-        </div >
+            <div className="box-home">
+                <Tab.Container defaultActiveKey="gasolina">
+                    <Tab.Content>
+                        <Tab.Pane eventKey="gasolina">
+                            <Tab.Container defaultActiveKey="comum">
+                                <Nav className="tipo-gasolina" variant="pills">
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="comum">
+                                            <span>Comum</span>
+                                        </Nav.Link>
+                                    </Nav.Item>
+
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="aditivada">
+                                            <span>Aditivada</span>
+                                        </Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+
+                                <Tab.Content>
+                                    <Tab.Pane eventKey="comum">
+                                        {combustiveis.map(combustivel =>
+                                            (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
+                                            &&
+                                            (
+                                                <Card key={combustivel.id}>
+                                                    <Card.Header>
+                                                        <img
+                                                            src={
+                                                                (combustivel.postos.bandeira === "shell" ? shell :
+                                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                            }
+                                                            alt=""
+                                                        />
+                                                        <h3>{combustivel.postos.nome}</h3>
+
+                                                        <Dropdown
+                                                            key="left"
+                                                            id="dropdown-button-drop-left"
+                                                            drop="left"
+                                                        >
+                                                            <Dropdown.Toggle variant="success">
+                                                                <FiShare2 size={20} />
+                                                            </Dropdown.Toggle>
+
+                                                            <Dropdown.Menu>
+                                                                <Dropdown.Item>
+                                                                    <WhatsappShareButton
+                                                                        url={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaWhatsapp size={20} />
+                                                                        <span>whatsapp</span>
+                                                                    </WhatsappShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <FacebookShareButton
+                                                                        url="gasosaweb.herokuapp.com"
+                                                                        quote={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaFacebookF size={20} />
+                                                                        <span>facebook</span>
+                                                                    </FacebookShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <TelegramShareButton
+                                                                        url={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaTelegramPlane size={20} />
+                                                                        <span>telegram</span>
+                                                                    </TelegramShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <TwitterShareButton
+                                                                        url="gasosaweb.herokuapp.com"
+                                                                        title={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaTwitter size={20} />
+                                                                        <span>twitter</span>
+                                                                    </TwitterShareButton>
+                                                                </Dropdown.Item>
+                                                            </Dropdown.Menu>
+                                                        </Dropdown>
+                                                    </Card.Header>
+
+                                                    <Card.Body>
+                                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
+
+                                                        <ul className="informacoes">
+                                                            <li>
+                                                                <div className="combustiveis">
+                                                                    <h3>{combustivel.valor}</h3>
+                                                                </div>
+                                                            </li>
+
+                                                            <li>
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                            </li>
+                                                        </ul>
+
+                                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
+                                                    </Card.Body>
+                                                </Card>
+                                            ))}
+                                    </Tab.Pane>
+
+                                    <Tab.Pane eventKey="aditivada">
+                                        {combustiveis.map(combustivel =>
+                                            (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1)
+                                            &&
+                                            (
+                                                <Card key={combustivel.id}>
+                                                    <Card.Header>
+                                                        <img
+                                                            src={
+                                                                (combustivel.postos.bandeira === "shell" ? shell :
+                                                                    (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                                        (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                            (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                            }
+                                                            alt=""
+                                                        />
+                                                        <h3>{combustivel.postos.nome}</h3>
+
+                                                        <Dropdown
+                                                            key="left"
+                                                            id="dropdown-button-drop-left"
+                                                            drop="left"
+                                                        >
+                                                            <Dropdown.Toggle variant="success">
+                                                                <FiShare2 size={20} />
+                                                            </Dropdown.Toggle>
+
+                                                            <Dropdown.Menu>
+                                                                <Dropdown.Item>
+                                                                    <WhatsappShareButton
+                                                                        url={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaWhatsapp size={20} />
+                                                                        <span>whatsapp</span>
+                                                                    </WhatsappShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <FacebookShareButton
+                                                                        url="gasosaweb.herokuapp.com"
+                                                                        quote={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaFacebookF size={20} />
+                                                                        <span>facebook</span>
+                                                                    </FacebookShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <TelegramShareButton
+                                                                        url={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaTelegramPlane size={20} />
+                                                                        <span>telegram</span>
+                                                                    </TelegramShareButton>
+                                                                </Dropdown.Item>
+
+                                                                <Dropdown.Item>
+                                                                    <TwitterShareButton
+                                                                        url="gasosaweb.herokuapp.com"
+                                                                        title={
+                                                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                                        }
+                                                                    >
+                                                                        <FaTwitter size={20} />
+                                                                        <span>twitter</span>
+                                                                    </TwitterShareButton>
+                                                                </Dropdown.Item>
+                                                            </Dropdown.Menu>
+                                                        </Dropdown>
+                                                    </Card.Header>
+
+                                                    <Card.Body>
+                                                        <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
+
+                                                        <ul className="informacoes">
+                                                            <li>
+                                                                <div className="combustiveis">
+                                                                    <h3>{combustivel.valor}</h3>
+                                                                </div>
+                                                            </li>
+
+                                                            <li>
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                            </li>
+                                                        </ul>
+
+                                                        <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
+                                                    </Card.Body>
+                                                </Card>
+                                            ))}
+                                    </Tab.Pane>
+                                </Tab.Content>
+                            </Tab.Container>
+                        </Tab.Pane>
+
+                        <Tab.Pane eventKey="alcool">
+                            {combustiveis.map(combustivel =>
+                                (combustivel.tipo.indexOf("ETANOL") !== -1)
+                                &&
+                                (
+                                    <Card key={combustivel.id}>
+                                        <Card.Header>
+                                            <img
+                                                src={
+                                                    (combustivel.postos.bandeira === "shell" ? shell :
+                                                        (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                            (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                }
+                                                alt=""
+                                            />
+                                            <h3>{combustivel.postos.nome}</h3>
+
+                                            <Dropdown
+                                                key="left"
+                                                id="dropdown-button-drop-left"
+                                                drop="left"
+                                            >
+                                                <Dropdown.Toggle variant="success">
+                                                    <FiShare2 size={20} />
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item>
+                                                        <WhatsappShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaWhatsapp size={20} />
+                                                            <span>whatsapp</span>
+                                                        </WhatsappShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <FacebookShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            quote={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaFacebookF size={20} />
+                                                            <span>facebook</span>
+                                                        </FacebookShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TelegramShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTelegramPlane size={20} />
+                                                            <span>telegram</span>
+                                                        </TelegramShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TwitterShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            title={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTwitter size={20} />
+                                                            <span>twitter</span>
+                                                        </TwitterShareButton>
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </Card.Header>
+
+                                        <Card.Body>
+                                            <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
+
+                                            <ul className="informacoes">
+                                                <li>
+                                                    <div className="combustiveis">
+                                                        <h3>{combustivel.valor}</h3>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                </li>
+
+                                                <li>
+                                                    <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                </li>
+                                            </ul>
+
+                                            <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
+                                        </Card.Body>
+                                    </Card>
+                                ))}
+                        </Tab.Pane>
+
+                        <Tab.Pane eventKey="diesel">
+                            {combustiveis.map(combustivel =>
+                                (combustivel.tipo.indexOf("DIESEL") !== -1)
+                                &&
+                                (
+                                    <Card key={combustivel.id}>
+                                        <Card.Header>
+                                            <img
+                                                src={
+                                                    (combustivel.postos.bandeira === "shell" ? shell :
+                                                        (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                            (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                }
+                                                alt=""
+                                            />
+                                            <h3>{combustivel.postos.nome}</h3>
+
+                                            <Dropdown
+                                                key="left"
+                                                id="dropdown-button-drop-left"
+                                                drop="left"
+                                            >
+                                                <Dropdown.Toggle variant="success">
+                                                    <FiShare2 size={20} />
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item>
+                                                        <WhatsappShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaWhatsapp size={20} />
+                                                            <span>whatsapp</span>
+                                                        </WhatsappShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <FacebookShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            quote={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaFacebookF size={20} />
+                                                            <span>facebook</span>
+                                                        </FacebookShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TelegramShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTelegramPlane size={20} />
+                                                            <span>telegram</span>
+                                                        </TelegramShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TwitterShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            title={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTwitter size={20} />
+                                                            <span>twitter</span>
+                                                        </TwitterShareButton>
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </Card.Header>
+
+                                        <Card.Body>
+                                            <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
+
+                                            <ul className="informacoes">
+                                                <li>
+                                                    <div className="combustiveis">
+                                                        <h3>{combustivel.valor}</h3>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                </li>
+
+                                                <li>
+                                                    <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                </li>
+                                            </ul>
+
+                                            <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
+                                        </Card.Body>
+                                    </Card>
+                                ))}
+                        </Tab.Pane>
+
+                        <Tab.Pane eventKey="gas">
+                            {combustiveis.map(combustivel =>
+                                (combustivel.tipo.indexOf("GNV") !== -1)
+                                &&
+                                (
+                                    <Card key={combustivel.id}>
+                                        <Card.Header>
+                                            <img
+                                                src={
+                                                    (combustivel.postos.bandeira === "shell" ? shell :
+                                                        (combustivel.postos.bandeira === "menor") ? menorPreco :
+                                                            (combustivel.postos.bandeira === "petrobras") ? petrobras :
+                                                                (combustivel.postos.bandeira === "ipiranga") ? ipiranga : outros)
+                                                }
+                                                alt=""
+                                            />
+                                            <h3>{combustivel.postos.nome}</h3>
+
+                                            <Dropdown
+                                                key="left"
+                                                id="dropdown-button-drop-left"
+                                                drop="left"
+                                            >
+                                                <Dropdown.Toggle variant="success">
+                                                    <FiShare2 size={20} />
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item>
+                                                        <WhatsappShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaWhatsapp size={20} />
+                                                            <span>whatsapp</span>
+                                                        </WhatsappShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <FacebookShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            quote={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaFacebookF size={20} />
+                                                            <span>facebook</span>
+                                                        </FacebookShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TelegramShareButton
+                                                            url={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTelegramPlane size={20} />
+                                                            <span>telegram</span>
+                                                        </TelegramShareButton>
+                                                    </Dropdown.Item>
+
+                                                    <Dropdown.Item>
+                                                        <TwitterShareButton
+                                                            url="gasosaweb.herokuapp.com"
+                                                            title={
+                                                                `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n${combustivel.tipo} no ${combustivel.postos.nome} está ${combustivel.valor}, atualizado em ${combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}\n\nVocê pode se dirigir ao posto clicando no link: ${combustivel.postos.url}`
+                                                            }
+                                                        >
+                                                            <FaTwitter size={20} />
+                                                            <span>twitter</span>
+                                                        </TwitterShareButton>
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </Card.Header>
+
+                                        <Card.Body>
+                                            <h4><FiMapPin size={16} /> {combustivel.postos.endereco}</h4>
+
+                                            <ul className="informacoes">
+                                                <li>
+                                                    <div className="combustiveis">
+                                                        <h3>{combustivel.valor}</h3>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                </li>
+
+                                                <li>
+                                                    <a href={combustivel.postos.url} target="_blank"><FiCornerUpRight size={15} /> <span>Ver no mapa</span></a>
+                                                </li>
+                                            </ul>
+
+                                            <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
+                                        </Card.Body>
+                                    </Card>
+                                ))}
+                        </Tab.Pane>
+
+                        <Tab.Pane eventKey="menu">
+                            <ul className="menu-opcoes">
+                                <li onClick={() => setModalAlcoolGasolinaShow(true)}>Álcool x Gasolina</li>
+                                <ModalAlcoolGasolina animation={false} show={modalAlcoolGasolinaShow} onHide={() => setModalAlcoolGasolinaShow(false)} />
+
+                                <li onClick={() => setModalMediaPorKmShow(true)}>Média por Km percorrido</li>
+                                <ModalMediaPorKm animation={false} show={modalMediaPorKmShow} onHide={() => setModalMediaPorKmShow(false)} />
+
+                                <li onClick={() => setModalQuantoIreiGastarShow(true)}>Quanto irei gastar?</li>
+                                <ModalQuantoIreiGastar animation={false} show={modalQuantoIreiGastarShow} onHide={() => setModalQuantoIreiGastarShow(false)} />
+
+                                <li onClick={() => setModalSobreShow(true)}>Sobre o aplicativo</li>
+                                <ModalSobre animation={false} show={modalSobreShow} onHide={() => setModalSobreShow(false)} />
+
+                                <li onClick={() => setModalSugestoesShow(true)}>Sugestões, Bugs e Comentários</li>
+                                <ModalSugestoes animation={false} show={modalSugestoesShow} onHide={() => setModalSugestoesShow(false)} />
+                            </ul>
+                        </Tab.Pane>
+                    </Tab.Content>
+
+                    <Nav variant="pills">
+                        <Nav.Item>
+                            <Nav.Link
+                                eventKey="gasolina"
+                                onClick={() => {
+                                    setModalAlcoolGasolinaShow(false)
+                                    setModalMediaPorKmShow(false)
+                                    setModalQuantoIreiGastarShow(false)
+                                    setModalSobreShow(false)
+                                    setModalSugestoesShow(false)
+                                }}
+                            >
+                                <span>Gasolina</span>
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link
+                                eventKey="alcool"
+                                onClick={() => {
+                                    setModalAlcoolGasolinaShow(false)
+                                    setModalMediaPorKmShow(false)
+                                    setModalQuantoIreiGastarShow(false)
+                                    setModalSobreShow(false)
+                                    setModalSugestoesShow(false)
+                                }}
+                            >
+                                <span>Álcool</span>
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link
+                                eventKey="diesel" onClick={() => {
+                                    setModalAlcoolGasolinaShow(false)
+                                    setModalMediaPorKmShow(false)
+                                    setModalQuantoIreiGastarShow(false)
+                                    setModalSobreShow(false)
+                                    setModalSugestoesShow(false)
+                                }}
+                            >
+                                <span>Diesel</span>
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link
+                                eventKey='gas'
+                                onClick={() => {
+                                    setModalAlcoolGasolinaShow(false)
+                                    setModalMediaPorKmShow(false)
+                                    setModalQuantoIreiGastarShow(false)
+                                    setModalSobreShow(false)
+                                    setModalSugestoesShow(false)
+                                }}
+                            >
+                                <span>Gnv</span>
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link eventKey="menu">
+                                <span>Menu</span>
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                </Tab.Container>
+            </div >
+        </>
     );
 }

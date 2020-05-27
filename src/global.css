@@ -10,8 +10,6 @@
 body {
   height: 100%;
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
   font-family: "Oxygen", sans-serif;
   background: linear-gradient(90deg, #330c2f, #7067cf);
   color: #b7c0ee;
@@ -32,17 +30,6 @@ h6,
 p {
   margin: 0;
   font-weight: normal;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 36px 15px;
-  padding-top: 50px;
-  height: 100vh;
-  position: relative;
 }
 
 form {

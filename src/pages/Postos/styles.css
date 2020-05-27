@@ -5,19 +5,36 @@
     align-items: center;
     padding: 50px 15px;
     padding-bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     margin-bottom: 25px;
     position: relative;
 }
 
-.box-postos input {
+.box-postos .busca {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    width: 100%;
+    height: 32px;
+    position: relative;
+}
+
+.box-postos .busca svg {
+    position: absolute;
+    left: 8px;
+}
+
+.box-postos .busca input {
     width: 100%;
     height: 32px;
     padding: 0px 10px;
+    padding-left: 28px;
     background: transparent;
     color: #b7c0ee;
     border: 2px solid #b7c0ee;
     border-radius: 4px;
-    margin-top: 25px;
     font-size: 14px;
     font-weight: bold;
 }
