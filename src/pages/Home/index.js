@@ -129,7 +129,7 @@ export default function Home () {
     const [gnvs, setGnvs] = useState([]);
     const [diesels, setDiesels] = useState([]);
 
-    const [distancia, setDistancia] = useState('');
+    let distancias = new Map();
 
     const [modalAlcoolGasolinaShow, setModalAlcoolGasolinaShow] = useState(false);
     const [modalMediaPorKmShow, setModalMediaPorKmShow] = useState(false);
@@ -217,6 +217,8 @@ export default function Home () {
                                         {combustiveis.map(combustivel =>
                                             (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
                                             &&
+                                            combustiveis.map(combustivel => distancias.set(combustivel.id, parseFloat(handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude))))
+                                            &&
                                             (
                                                 <Card key={combustivel.id}>
                                                     <Card.Header>
@@ -301,7 +303,8 @@ export default function Home () {
                                                             </li>
 
                                                             <li>
-                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                                {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
                                                             </li>
 
                                                             <li>
@@ -403,7 +406,8 @@ export default function Home () {
                                                             </li>
 
                                                             <li>
-                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                                {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
                                                             </li>
 
                                                             <li>
@@ -508,7 +512,8 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>
@@ -610,7 +615,8 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>
@@ -712,7 +718,8 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
+                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>

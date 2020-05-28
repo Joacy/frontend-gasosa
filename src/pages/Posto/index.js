@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 
-import { Card } from 'react-bootstrap';
+import {
+    Card,
+    Dropdown,
+} from 'react-bootstrap';
+
+import {
+    FacebookShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+} from "react-share";
+
+import {
+    FaWhatsapp,
+    FaFacebookF,
+    FaTelegramPlane,
+    FaTwitter,
+} from "react-icons/fa";
 
 import {
     FiCornerUpRight,
@@ -102,17 +119,83 @@ export default class Posto extends Component {
                     <Card.Body>
                         <h4><FiMapPin size={16} /> {posto.endereco}</h4>
 
+                        <h5>{posto.latitude !== null ? `Situado a ${this.handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km do seu local` : ''}</h5>
+
+                        <div className="acoes">
+                            <a href={posto.url} target="_blank"><FiCornerUpRight size={14} /> <span>Ver no mapa</span></a>
+                        </div>
+
                         <ul className="combustiveis">
                             {combustiveisArray.map(combustivel => (
                                 <li key={combustivel.id}><span>{combustivel.tipo}</span> <span>{combustivel.valor}</span></li>
                             ))}
                         </ul>
 
-                        <h5>{posto.latitude !== null ? `Situado a ${this.handleDistance(latitude, longitude, posto.latitude, posto.longitude).toFixed(2)} Km do seu local` : ''}</h5>
+                        <div id="compartilhar">
+                            <span>Compartilhar via</span>
+                            <ul className="media-share">
+                                <li>
+                                    <WhatsappShareButton
+                                        url={
+                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n` +
+                                            `No posto ${posto.nome} o` +
+                                            combustiveisArray.map(combustivel => (
+                                                " " + combustivel.tipo + " está " + combustivel.valor
+                                            )) +
+                                            `\n\nVocê pode se dirigir ao posto clicando no link: ${posto.url}`
+                                        }
+                                    >
+                                        <FaWhatsapp size={16} />
+                                    </WhatsappShareButton>
+                                </li>
 
-                        <div className="acoes">
-                            <a href={posto.url} target="_blank"><FiCornerUpRight /> <span>Ver no mapa</span></a>
-                            <button><FiShare2 /> <span>Compartilhar</span></button>
+                                <li>
+                                    <FacebookShareButton
+                                        url="gasosaweb.herokuapp.com"
+                                        quote={
+                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n` +
+                                            `No posto ${posto.nome} o` +
+                                            combustiveisArray.map(combustivel => (
+                                                " " + combustivel.tipo + " está " + combustivel.valor
+                                            )) +
+                                            `\n\nVocê pode se dirigir ao posto clicando no link: ${posto.url}`
+                                        }
+                                    >
+                                        <FaFacebookF size={16} />
+                                    </FacebookShareButton>
+                                </li>
+
+                                <li>
+                                    <TelegramShareButton
+                                        url={
+                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n` +
+                                            `No posto ${posto.nome} o` +
+                                            combustiveisArray.map(combustivel => (
+                                                " " + combustivel.tipo + " está " + combustivel.valor
+                                            )) +
+                                            `\n\nVocê pode se dirigir ao posto clicando no link: ${posto.url}`
+                                        }
+                                    >
+                                        <FaTelegramPlane size={16} />
+                                    </TelegramShareButton>
+                                </li>
+
+                                <li>
+                                    <TwitterShareButton
+                                        url="gasosaweb.herokuapp.com"
+                                        title={
+                                            `Compartilhe o Aplicativo Gasosa!\n\nhttps://gasosaweb.herokuapp.com/\n\n` +
+                                            `No posto ${posto.nome} o` +
+                                            combustiveisArray.map(combustivel => (
+                                                " " + combustivel.tipo + " está " + combustivel.valor
+                                            )) +
+                                            `\n\nVocê pode se dirigir ao posto clicando no link: ${posto.url}`
+                                        }
+                                    >
+                                        <FaTwitter size={16} />
+                                    </TwitterShareButton>
+                                </li>
+                            </ul>
                         </div>
                     </Card.Body>
                 </Card>
