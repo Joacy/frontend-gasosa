@@ -124,12 +124,8 @@ function ModalSugestoes (props) {
 
 export default function Home () {
     const [combustiveis, setCombustiveis] = useState([]);
-    const [gasolinas, setGasolinas] = useState([]);
-    const [etanols, setEtanols] = useState([]);
-    const [gnvs, setGnvs] = useState([]);
-    const [diesels, setDiesels] = useState([]);
 
-    let distancias = new Map();
+    let distancias = [];
 
     const [modalAlcoolGasolinaShow, setModalAlcoolGasolinaShow] = useState(false);
     const [modalMediaPorKmShow, setModalMediaPorKmShow] = useState(false);
@@ -139,6 +135,8 @@ export default function Home () {
 
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
+
+    const [filtro, setFiltro] = useState('');
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -169,8 +167,12 @@ export default function Home () {
         }
     }
 
-    function maior (a, b) {
-        return a.valor < b.valor;
+    function ordenaPreco (a, b) {
+        return (a.valor < b.valor ? -1 : a.valor > b.valor ? 1 : 0);
+    }
+
+    function ordenaData (a, b) {
+        return (a.updated_at > b.updated_at ? -1 : a.updated_at < b.updated_at ? 1 : 0);
     }
 
     useEffect(() => {
@@ -189,11 +191,62 @@ export default function Home () {
         return d;
     }
 
+    function ordenaCombustiveis (filtro) {
+        if (filtro === "preco") {
+            const porPreco = combustiveis.sort(ordenaPreco);
+            setCombustiveis(porPreco);
+        }
+        else if (filtro === "distancia") {
+            combustiveis.map(combustivel => (
+                distancias.push({
+                    "id": combustivel.id,
+                    "combustivel": combustivel,
+                    "distancia": parseFloat(handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude)),
+                })
+            ))
+
+            const sortDistancias = distancias.sort((a, b) => a.distancia - b.distancia);
+            console.log(sortDistancias);
+
+            const aux = [];
+            sortDistancias.map(item =>
+                aux.push(item.combustivel)
+            )
+
+            setCombustiveis(aux);
+        }
+        else if (filtro === "atualizacao") {
+            const porData = combustiveis.sort(ordenaData);
+            setCombustiveis(porData);
+        }
+        else {
+            setCombustiveis(combustiveis);
+        }
+    }
+
     return (
         <>
             <Header />
 
             <div className="box-home">
+                <div className="filtros">
+                    <select
+                        defaultValue="ordenacao"
+                        value={filtro}
+                        onChange={
+                            e => {
+                                setFiltro(e.target.options[e.target.selectedIndex].value)
+                                ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                            }
+                        }
+                    >
+                        <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                        <option className="opcao" value="preco">Menor Preço</option>
+                        <option className="opcao" value="distancia">Menor Distância</option>
+                        <option className="opcao" value="atualizacao">Mais Recentes</option>
+                    </select>
+                </div>
+
                 <Tab.Container defaultActiveKey="gasolina">
                     <Tab.Content>
                         <Tab.Pane eventKey="gasolina">
@@ -216,8 +269,6 @@ export default function Home () {
                                     <Tab.Pane eventKey="comum">
                                         {combustiveis.map(combustivel =>
                                             (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
-                                            &&
-                                            combustiveis.map(combustivel => distancias.set(combustivel.id, parseFloat(handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude))))
                                             &&
                                             (
                                                 <Card key={combustivel.id}>
@@ -303,8 +354,7 @@ export default function Home () {
                                                             </li>
 
                                                             <li>
-                                                                {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
-                                                                <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
                                                             </li>
 
                                                             <li>
@@ -406,8 +456,7 @@ export default function Home () {
                                                             </li>
 
                                                             <li>
-                                                                {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
-                                                                <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
+                                                                <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
                                                             </li>
 
                                                             <li>
@@ -512,8 +561,7 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>
@@ -615,8 +663,7 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>
@@ -718,8 +765,7 @@ export default function Home () {
                                                 </li>
 
                                                 <li>
-                                                    {/* <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4> */}
-                                                    <h4>{combustivel.postos.latitude !== null ? `a ${distancias.get(combustivel.id).toFixed(2)} Km` : ''}</h4>
+                                                    <h4>{combustivel.postos.latitude !== null ? `a ${handleDistance(latitude, longitude, combustivel.postos.latitude, combustivel.postos.longitude).toFixed(2)} Km` : ''}</h4>
                                                 </li>
 
                                                 <li>

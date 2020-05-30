@@ -11,6 +11,56 @@
     margin: 0 auto;
 }
 
+.box-home .filtros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.box-home .filtros select {
+    width: 100%;
+    padding: 5px 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    background: #f9f9f9;
+    color: #330c2f;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.box-home .filtros select option.opcao {
+    display: block;
+    background: #f9f9f9;
+    color: #330c2f;
+    font-size: 13px;
+    font-weight: bold;
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+.box-home .filtros select option.opcao:hover,
+.box-home .filtros select option.opcao.active,
+.box-home .filtros select option.opcao:visited,
+.box-home .filtros select option.opcao:focus {
+    background: #f0f0f0;
+    color: #330c2f;
+    font-size: 13px;
+    font-weight: bold;
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px;
+    outline: 0;
+    border: 0;
+}
+
 .box-home .card:last-child {
     margin-bottom: 25px;
 }
@@ -86,7 +136,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 5px;    
+    padding: 5px;
     border-radius: 4px;
     background: transparent;
     color: #f9f9f9;
@@ -331,7 +381,7 @@ body.modal-open {
     height: auto;
     background: #f9f9f9;
     box-shadow: 5px 5px 15px 0px #330c2f;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .box-home .nav.nav-pills.tipo-gasolina .nav-item {
