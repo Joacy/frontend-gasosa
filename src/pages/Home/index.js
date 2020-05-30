@@ -229,24 +229,6 @@ export default function Home () {
             <Header />
 
             <div className="box-home">
-                <div className="filtros">
-                    <select
-                        defaultValue="ordenacao"
-                        value={filtro}
-                        onChange={
-                            e => {
-                                setFiltro(e.target.options[e.target.selectedIndex].value)
-                                ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
-                            }
-                        }
-                    >
-                        <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
-                        <option className="opcao" value="preco">Menor Preço</option>
-                        <option className="opcao" value="distancia">Menor Distância</option>
-                        <option className="opcao" value="atualizacao">Mais Recentes</option>
-                    </select>
-                </div>
-
                 <Tab.Container defaultActiveKey="gasolina">
                     <Tab.Content>
                         <Tab.Pane eventKey="gasolina">
@@ -267,6 +249,24 @@ export default function Home () {
 
                                 <Tab.Content>
                                     <Tab.Pane eventKey="comum">
+                                        <div className="filtros">
+                                            <select
+                                                defaultValue="ordenacao"
+                                                value={filtro}
+                                                onChange={
+                                                    e => {
+                                                        setFiltro(e.target.options[e.target.selectedIndex].value)
+                                                        ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                                                    }
+                                                }
+                                            >
+                                                <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                                                <option className="opcao" value="preco">Menor Preço</option>
+                                                <option className="opcao" value="distancia">Menor Distância</option>
+                                                <option className="opcao" value="atualizacao">Mais Recentes</option>
+                                            </select>
+                                        </div>
+
                                         {combustiveis.map(combustivel =>
                                             (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
                                             &&
@@ -369,6 +369,24 @@ export default function Home () {
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="aditivada">
+                                        <div className="filtros">
+                                            <select
+                                                defaultValue="ordenacao"
+                                                value={filtro}
+                                                onChange={
+                                                    e => {
+                                                        setFiltro(e.target.options[e.target.selectedIndex].value)
+                                                        ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                                                    }
+                                                }
+                                            >
+                                                <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                                                <option className="opcao" value="preco">Menor Preço</option>
+                                                <option className="opcao" value="distancia">Menor Distância</option>
+                                                <option className="opcao" value="atualizacao">Mais Recentes</option>
+                                            </select>
+                                        </div>
+
                                         {combustiveis.map(combustivel =>
                                             (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1)
                                             &&
@@ -474,6 +492,24 @@ export default function Home () {
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="alcool">
+                            <div className="filtros">
+                                <select
+                                    defaultValue="ordenacao"
+                                    value={filtro}
+                                    onChange={
+                                        e => {
+                                            setFiltro(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao" value="preco">Menor Preço</option>
+                                    <option className="opcao" value="distancia">Menor Distância</option>
+                                    <option className="opcao" value="atualizacao">Mais Recentes</option>
+                                </select>
+                            </div>
+
                             {combustiveis.map(combustivel =>
                                 (combustivel.tipo.indexOf("ETANOL") !== -1)
                                 &&
@@ -576,6 +612,24 @@ export default function Home () {
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="diesel">
+                            <div className="filtros">
+                                <select
+                                    defaultValue="ordenacao"
+                                    value={filtro}
+                                    onChange={
+                                        e => {
+                                            setFiltro(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao" value="preco">Menor Preço</option>
+                                    <option className="opcao" value="distancia">Menor Distância</option>
+                                    <option className="opcao" value="atualizacao">Mais Recentes</option>
+                                </select>
+                            </div>
+
                             {combustiveis.map(combustivel =>
                                 (combustivel.tipo.indexOf("DIESEL") !== -1)
                                 &&
@@ -678,6 +732,24 @@ export default function Home () {
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="gas">
+                            <div className="filtros">
+                                <select
+                                    defaultValue="ordenacao"
+                                    value={filtro}
+                                    onChange={
+                                        e => {
+                                            setFiltro(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCombustiveis(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao" value="preco">Menor Preço</option>
+                                    <option className="opcao" value="distancia">Menor Distância</option>
+                                    <option className="opcao" value="atualizacao">Mais Recentes</option>
+                                </select>
+                            </div>
+                            
                             {combustiveis.map(combustivel =>
                                 (combustivel.tipo.indexOf("GNV") !== -1)
                                 &&

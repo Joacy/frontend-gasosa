@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 15px;
+    margin: 15px 0;
 }
 
 .box-home .filtros select {
@@ -61,17 +61,13 @@
     border: 0;
 }
 
-.box-home .card:last-child {
-    margin-bottom: 25px;
-}
-
 .box-home .card {
     display: flex;
     flex-direction: column;
     width: 100%;
     border: 0;
     border-radius: 4px;
-    margin-top: 25px;
+    margin-bottom: 25px;
     background: transparent;
 }
 
@@ -381,7 +377,7 @@ body.modal-open {
     height: auto;
     background: #f9f9f9;
     box-shadow: 5px 5px 15px 0px #330c2f;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .box-home .nav.nav-pills.tipo-gasolina .nav-item {
