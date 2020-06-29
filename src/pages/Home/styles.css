@@ -17,6 +17,8 @@
     justify-content: center;
     width: 100%;
     margin: 15px 0;
+
+    
 }
 
 .box-home .filtros select {
@@ -30,6 +32,7 @@
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
+    
 }
 
 .box-home .filtros select option.opcao {
@@ -59,8 +62,23 @@
     padding: 5px 10px;
     outline: 0;
     border: 0;
+    
 }
 
+.box-home .filtros  select + select {
+    margin-left: 12px;
+}
+
+@media screen and (max-width: 991px){
+    .box-home .filtros {
+        flex-direction: column;
+    }
+
+    .box-home .filtros select + select {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
 .box-home .card {
     display: flex;
     flex-direction: column;

@@ -47,7 +47,7 @@ import './styles.css';
 
 import api from '../../services/api';
 
-function ModalAlcoolGasolina (props) {
+function ModalAlcoolGasolina(props) {
     return (
         <Modal {...props}>
             <Modal.Header></Modal.Header>
@@ -62,7 +62,7 @@ function ModalAlcoolGasolina (props) {
     );
 }
 
-function ModalMediaPorKm (props) {
+function ModalMediaPorKm(props) {
     return (
         <Modal {...props}>
             <Modal.Header></Modal.Header>
@@ -77,7 +77,7 @@ function ModalMediaPorKm (props) {
     );
 }
 
-function ModalQuantoIreiGastar (props) {
+function ModalQuantoIreiGastar(props) {
     return (
         <Modal {...props}>
             <Modal.Header></Modal.Header>
@@ -92,7 +92,7 @@ function ModalQuantoIreiGastar (props) {
     );
 }
 
-function ModalSobre (props) {
+function ModalSobre(props) {
     return (
         <Modal {...props}>
             <Modal.Header></Modal.Header>
@@ -107,7 +107,7 @@ function ModalSobre (props) {
     );
 }
 
-function ModalSugestoes (props) {
+function ModalSugestoes(props) {
     return (
         <Modal {...props}>
             <Modal.Header></Modal.Header>
@@ -122,7 +122,7 @@ function ModalSugestoes (props) {
     );
 }
 
-export default function Home () {
+export default function Home() {
     const [combustiveis, setCombustiveis] = useState([]);
 
     let distancias = [];
@@ -137,6 +137,8 @@ export default function Home () {
     const [longitude, setLongitude] = useState('');
 
     const [filtro, setFiltro] = useState('');
+    const [filtroCidade, setFiltroCidade] = useState('Feira de Santana');
+
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -155,7 +157,7 @@ export default function Home () {
         )
     }, []);
 
-    async function getCombustiveis () {
+    async function getCombustiveis() {
         try {
             const response = await api.get('combustiveis');
 
@@ -167,11 +169,11 @@ export default function Home () {
         }
     }
 
-    function ordenaPreco (a, b) {
+    function ordenaPreco(a, b) {
         return (a.valor < b.valor ? -1 : a.valor > b.valor ? 1 : 0);
     }
 
-    function ordenaData (a, b) {
+    function ordenaData(a, b) {
         return (a.updated_at > b.updated_at ? -1 : a.updated_at < b.updated_at ? 1 : 0);
     }
 
@@ -179,7 +181,7 @@ export default function Home () {
         getCombustiveis();
     }, []);
 
-    function handleDistance (lat1, lon1, lat2, lon2) {
+    function handleDistance(lat1, lon1, lat2, lon2) {
         let R = 6371;
         let dLat = (lat2 - lat1) * (Math.PI / 180);
         let dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -191,7 +193,7 @@ export default function Home () {
         return d;
     }
 
-    function ordenaCombustiveis (filtro) {
+    function ordenaCombustiveis(filtro) {
         if (filtro === "preco") {
             const porPreco = combustiveis.sort(ordenaPreco);
             setCombustiveis(porPreco);
@@ -222,6 +224,11 @@ export default function Home () {
         else {
             setCombustiveis(combustiveis);
         }
+    }
+
+    function ordenaCidade(filtrando) {
+        console.log(filtrando + "aqui");
+        setFiltroCidade(filtrando);
     }
 
     return (
@@ -265,10 +272,29 @@ export default function Home () {
                                                 <option className="opcao" value="distancia">Menor Distância</option>
                                                 <option className="opcao" value="atualizacao">Mais Recentes</option>
                                             </select>
+
+                                            <select
+                                                defaultValue="ordenacao1"
+                                                value={filtroCidade}
+                                                onChange={
+                                                    e => {
+                                                        setFiltroCidade(e.target.options[e.target.selectedIndex].value)
+                                                        ordenaCidade(e.target.options[e.target.selectedIndex].value);
+                                                    }
+                                                }
+                                            >
+                                                <option className="opcao1" selected disabled value="ordenacao1">Ordenar por</option>
+                                                <option className="opcao1" value="Feira de Santana">Feira de Santana</option>
+                                                <option className="opcao1" value="Salvador">Salvador</option>
+                                                <option className="opcao1" value="Conceição do Jacuípe">Conceição do Jacuípe</option>
+                                                <option className="opcao1" value="São Gonçalo dos Campos">São Gonçalo dos Campos</option>
+                                                <option className="opcao1" value="Santo Estêvão">Santo Estêvão</option>
+                                                <option className="opcao1" value="Itamaraju">Itamaraju</option>
+                                            </select>
                                         </div>
 
                                         {combustiveis.map(combustivel =>
-                                            (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1)
+                                            (combustivel.tipo.indexOf("GASOLINA COMUM") !== -1 && combustivel.postos.cidade === filtroCidade)
                                             &&
                                             (
                                                 <Card key={combustivel.id}>
@@ -385,10 +411,36 @@ export default function Home () {
                                                 <option className="opcao" value="distancia">Menor Distância</option>
                                                 <option className="opcao" value="atualizacao">Mais Recentes</option>
                                             </select>
+
+                                            <select
+                                                defaultValue="ordenacao1"
+                                                value={filtroCidade}
+                                                onChange={
+                                                    e => {
+                                                        setFiltroCidade(e.target.options[e.target.selectedIndex].value)
+                                                        ordenaCidade(e.target.options[e.target.selectedIndex].value);
+                                                    }
+                                                }
+                                            >
+                                                <option className="opcao1" selected disabled value="ordenacao">Ordenar por</option>
+                                                <option className="opcao1" value="Feira de Santana">Feira de Santana</option>
+                                                <option className="opcao1" value="Salvador">Salvador</option>
+                                                <option className="opcao1" value="Conceição do Jacuípe">Conceição do Jacuípe</option>
+                                                <option className="opcao1" value="São Gonçalo dos Campos">São Gonçalo dos Campos</option>
+                                                <option className="opcao1" value="Santo Estêvão">Santo Estêvão</option>
+                                                <option className="opcao1" value="Itamaraju">Itamaraju</option>
+                                            </select>
+
+
+                                        </div>
+
+                                        <div className="filtros">
+
+
                                         </div>
 
                                         {combustiveis.map(combustivel =>
-                                            (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1)
+                                            (combustivel.tipo.indexOf("GASOLINA ADITIVADA") !== -1 && combustivel.postos.cidade === filtroCidade)
                                             &&
                                             (
                                                 <Card key={combustivel.id}>
@@ -485,6 +537,7 @@ export default function Home () {
                                                         <h6>Atualizado em: {combustivel.updated_at.substr(0, 10).split('-').reverse().join('/')}</h6>
                                                     </Card.Body>
                                                 </Card>
+
                                             ))}
                                     </Tab.Pane>
                                 </Tab.Content>
@@ -508,10 +561,29 @@ export default function Home () {
                                     <option className="opcao" value="distancia">Menor Distância</option>
                                     <option className="opcao" value="atualizacao">Mais Recentes</option>
                                 </select>
+
+                                <select
+                                    defaultValue="ordenacao1"
+                                    value={filtroCidade}
+                                    onChange={
+                                        e => {
+                                            setFiltroCidade(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCidade(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao1" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao1" value="Feira de Santana">Feira de Santana</option>
+                                    <option className="opcao1" value="Salvador">Salvador</option>
+                                    <option className="opcao1" value="Conceição do Jacuípe">Conceição do Jacuípe</option>
+                                    <option className="opcao1" value="São Gonçalo dos Campos">São Gonçalo dos Campos</option>
+                                    <option className="opcao1" value="Santo Estêvão">Santo Estêvão</option>
+                                    <option className="opcao1" value="Itamaraju">Itamaraju</option>
+                                </select>
                             </div>
 
                             {combustiveis.map(combustivel =>
-                                (combustivel.tipo.indexOf("ETANOL") !== -1)
+                                (combustivel.tipo.indexOf("ETANOL") !== -1 && combustivel.postos.cidade === filtroCidade)
                                 &&
                                 (
                                     <Card key={combustivel.id}>
@@ -628,10 +700,29 @@ export default function Home () {
                                     <option className="opcao" value="distancia">Menor Distância</option>
                                     <option className="opcao" value="atualizacao">Mais Recentes</option>
                                 </select>
+
+                                <select
+                                    defaultValue="ordenacao1"
+                                    value={filtroCidade}
+                                    onChange={
+                                        e => {
+                                            setFiltroCidade(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCidade(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao1" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao1" value="Feira de Santana">Feira de Santana</option>
+                                    <option className="opcao1" value="Salvador">Salvador</option>
+                                    <option className="opcao1" value="Conceição do Jacuípe">Conceição do Jacuípe</option>
+                                    <option className="opcao1" value="São Gonçalo dos Campos">São Gonçalo dos Campos</option>
+                                    <option className="opcao1" value="Santo Estêvão">Santo Estêvão</option>
+                                    <option className="opcao1" value="Itamaraju">Itamaraju</option>
+                                </select>
                             </div>
 
                             {combustiveis.map(combustivel =>
-                                (combustivel.tipo.indexOf("DIESEL") !== -1)
+                                (combustivel.tipo.indexOf("DIESEL") !== -1 && combustivel.postos.cidade===filtroCidade)
                                 &&
                                 (
                                     <Card key={combustivel.id}>
@@ -748,10 +839,29 @@ export default function Home () {
                                     <option className="opcao" value="distancia">Menor Distância</option>
                                     <option className="opcao" value="atualizacao">Mais Recentes</option>
                                 </select>
+
+                                <select
+                                    defaultValue="ordenacao1"
+                                    value={filtroCidade}
+                                    onChange={
+                                        e => {
+                                            setFiltroCidade(e.target.options[e.target.selectedIndex].value)
+                                            ordenaCidade(e.target.options[e.target.selectedIndex].value);
+                                        }
+                                    }
+                                >
+                                    <option className="opcao1" selected disabled value="ordenacao">Ordenar por</option>
+                                    <option className="opcao1" value="Feira de Santana">Feira de Santana</option>
+                                    <option className="opcao1" value="Salvador">Salvador</option>
+                                    <option className="opcao1" value="Conceição do Jacuípe">Conceição do Jacuípe</option>
+                                    <option className="opcao1" value="São Gonçalo dos Campos">São Gonçalo dos Campos</option>
+                                    <option className="opcao1" value="Santo Estêvão">Santo Estêvão</option>
+                                    <option className="opcao1" value="Itamaraju">Itamaraju</option>
+                                </select>
                             </div>
-                            
+
                             {combustiveis.map(combustivel =>
-                                (combustivel.tipo.indexOf("GNV") !== -1)
+                                (combustivel.tipo.indexOf("GNV") !== -1 && combustivel.postos.cidade === filtroCidade)
                                 &&
                                 (
                                     <Card key={combustivel.id}>
